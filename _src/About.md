@@ -1,3 +1,3 @@
-# About page
+# 关于我
 
-Your about page, here.
+最近正在学习 [racket](https://racket-lang.org/) ，并学习如何更好地生活
