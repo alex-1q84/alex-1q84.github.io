@@ -8,5 +8,5 @@ build:
 setup:
 	raco frog --init
 
-cleanup:
+clean:
 	rm -rf 20* About.html feeds index.html posts sitemap.txt tags
