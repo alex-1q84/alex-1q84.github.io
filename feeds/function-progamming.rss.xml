@@ -9,8 +9,8 @@
   <ttl>1800</ttl>
   <item>
    <title>学习 Racket 语言</title>
-   <link>http://alex-1q84.github.io/2020/07/%E5%AD%A6%E4%B9%A0-racket-%E8%AF%AD%E8%A8%80.html?utm_source=function-progamming&amp;utm_medium=RSS</link>
-   <guid isPermaLink="false">urn:http-alex-1q84-github-io:-2020-07-E5-AD-A6-E4-B9-A0-racket-E8-AF-AD-E8-A8-80-html</guid>
+   <link>http://alex-1q84.github.io/2020/07/learnning-racket-lang.html?utm_source=function-progamming&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-alex-1q84-github-io:-2020-07-learnning-racket-lang-html</guid>
    <pubDate>Mon, 06 Jul 2020 13:41:11 UT</pubDate>
    <author>Alex-1Q84</author>
    <description>
@@ -28,4 +28,4 @@
 
 &lt;p&gt;另找到一本 racket 入门练习书 Picturing Programs: an Introduction to Computer Programming ，和 2htdp 也有莫大渊源，这本书可以免费获取，或许可以作为 Realm of Racket 的替代品（不负责任），合适的话也请赞助作者。网站 &lt;a href="http://picturingprograms.com/"&gt;http://picturingprograms.com/&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;附上 Racket 和 Common Lisp 的语法介绍，练习时可以对照感受下异同 Racket &lt;a href="https://learnxinyminutes.com/docs/zh-cn/racket-cn/"&gt;https://learnxinyminutes.com/docs/zh-cn/racket-cn/&lt;/a&gt; Common Lisp &lt;a href="https://learnxinyminutes.com/docs/common-lisp/"&gt;https://learnxinyminutes.com/docs/common-lisp/&lt;/a&gt;&lt;/p&gt;&lt;a href="http://alex-1q84.github.io/2020/07/%E5%AD%A6%E4%B9%A0-racket-%E8%AF%AD%E8%A8%80.html?utm_source=function-progamming&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item></channel></rss>
+&lt;p&gt;附上 Racket 和 Common Lisp 的语法介绍，练习时可以对照感受下异同 Racket &lt;a href="https://learnxinyminutes.com/docs/zh-cn/racket-cn/"&gt;https://learnxinyminutes.com/docs/zh-cn/racket-cn/&lt;/a&gt; Common Lisp &lt;a href="https://learnxinyminutes.com/docs/common-lisp/"&gt;https://learnxinyminutes.com/docs/common-lisp/&lt;/a&gt;&lt;/p&gt;&lt;a href="http://alex-1q84.github.io/2020/07/learnning-racket-lang.html?utm_source=function-progamming&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item></channel></rss>
