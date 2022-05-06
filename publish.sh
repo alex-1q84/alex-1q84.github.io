@@ -10,6 +10,9 @@ git pull
 git merge --no-ff --log master -m "git merge origin/master"
 
 if [ $? -eq '0' ]; then
+    make build
+    git add *
+    git commit -m "`date +%Y%m%d%H%M%S` generate post pages"
     git push
     echo "push to remote"
 else
