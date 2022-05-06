@@ -8,4 +8,11 @@ git reset --hard
 git clean -dqxf
 git pull
 git merge --no-ff --log master -m "git merge origin/master"
-##git push
+
+if [ $? -eq '0' ]; then
+    git push
+    echo "push to remote"
+else
+    echo "merge failed, cancel push" 1>&2
+fi
+

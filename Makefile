@@ -1,6 +1,6 @@
 
 preview: build
-	raco frog -p
+	raco frog -wp
 
 build:
 	raco frog -b
