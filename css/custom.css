@@ -5,6 +5,11 @@
     }
 }
 
+.h3, h3 {
+  /*font-size: 1.75rem;*/
+  border-bottom: 1px solid gray;
+}
+
 code {
     color: black;
 }
