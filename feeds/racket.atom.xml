@@ -4,7 +4,124 @@
  <link rel="self" href="http://alex-1q84.github.io/feeds/racket.atom.xml" />
  <link href="http://alex-1q84.github.io/tags/racket.html" />
  <id>urn:http-alex-1q84-github-io:-tags-racket-html</id>
- <updated>2020-07-06T13:41:11Z</updated>
+ <updated>2022-06-17T06:31:39Z</updated>
+ <entry>
+  <title type="text">config racket/rsvg lib to use librsvg via FFI in Racket</title>
+  <link rel="alternate" href="http://alex-1q84.github.io/2022/06/config-racket-rsvg-lib-to-use-librsvg-via-ffi-in-racket.html?utm_source=racket&amp;utm_medium=Atom" />
+  <id>urn:http-alex-1q84-github-io:-2022-06-config-racket-rsvg-lib-to-use-librsvg-via-ffi-in-racket-html</id>
+  <published>2022-06-17T06:31:39Z</published>
+  <updated>2022-06-17T06:31:39Z</updated>
+  <author>
+   <name>Alex-1Q84</name></author>
+  <content type="html">
+&lt;p&gt;I have a little Racket program that dependences &lt;code&gt;racket/rsvg&lt;/code&gt;, so I install the &lt;code&gt;racket/rsvg&lt;/code&gt; lib on my macOS using under command&lt;/p&gt;
+
+&lt;div class="brush: bash"&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;raco pkg install -u rsvg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;but when I then run the program, it produces some error messages&lt;/p&gt;
+
+&lt;blockquote&gt;
+ &lt;p&gt;ffi-lib: couldn&amp;rsquo;t open &amp;ldquo;librsvg&amp;ndash;2.2.dylib&amp;rdquo; (dlopen(librsvg&amp;ndash;2.2.dylib, 6): image not found)&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;after check the racket&amp;rsquo;s &lt;code&gt;ffi-lib&lt;/code&gt; doc, I fixed it, the follow is How I fix the problem. originally posted on &lt;a href="https://github.com/takikawa/racket-rsvg/issues/7#issuecomment-729429563"&gt;github&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I have the same problem, and when I checked the method &lt;code&gt;ffi-lib&lt;/code&gt; &lt;a href="https://docs.racket-lang.org/foreign/Loading_Foreign_Libraries.html#%28def._%28%28lib._ffi%2Funsafe..rkt%29._ffi-lib%29%29"&gt;doc&lt;/a&gt;, it explains how racket finds ffi lib path&lt;/p&gt;
+
+&lt;blockquote&gt;
+ &lt;p&gt;If &lt;em&gt;path&lt;/em&gt; is not an absolute path, look in each directory reported by &lt;code&gt;get-lib-dirs&lt;/code&gt;; the default list is the result of &lt;code&gt;(get-lib-search-dirs)&lt;/code&gt;.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;as the racket document describes, we can use the code under here to get the current lib search dirs&lt;/p&gt;
+
+&lt;div class="brush: racket"&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit"&gt;require&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;setup/dirs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;&lt;a href="http://docs.racket-lang.org/raco/dirs.html#(def._((lib._setup/dirs..rkt)._get-lib-search-dirs))" style="color: inherit"&gt;get-lib-search-dirs&lt;/a&gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;on my computer the result is &lt;code&gt;'(#&amp;lt;path:/Users/mywo/Library/Racket/7.9/lib&amp;gt; #&amp;lt;path:/usr/local/opt/Racket/lib&amp;gt;)&lt;/code&gt;. and my librsvg lib path is &lt;code&gt;/usr/local/Cellar/librsvg/2.48.8/lib/librsvg-2.2.dylib&lt;/code&gt;, which can find with &lt;code&gt;homebrew&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class="brush: bash"&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew list librsvg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;if you don&amp;rsquo;t have librsvg in you system, you can install it using Homebrew&lt;/p&gt;
+
+&lt;div class="brush: bash"&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew install librsvg
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;the racket document shows we can config lib search dirs, follow the &lt;a href="https://docs.racket-lang.org/raco/config-file.html"&gt;Installation Configuration and Search Paths&lt;/a&gt; I changed my racket config file &lt;code&gt;/Applications/Racket v7.9/etc/config.rktd&lt;/code&gt;, add the &lt;code&gt;'lib-search-dirs'&lt;/code&gt; setting to it, and my program running correctly.&lt;/p&gt;
+
+&lt;p&gt;here is my &lt;code&gt;config.rktd&lt;/code&gt; content&lt;/p&gt;
+
+&lt;div class="brush: racket"&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
+&lt;span class="normal"&gt;2&lt;/span&gt;
+&lt;span class="normal"&gt;3&lt;/span&gt;
+&lt;span class="normal"&gt;4&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;#hash&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="ss"&gt;build-stamp&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s2"&gt;""&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;catalogs&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"https://download.racket-lang.org/releases/7.9/catalog/"&lt;/span&gt; &lt;span class="no"&gt;#f&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;doc-search-url&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s2"&gt;"https://download.racket-lang.org/releases/7.9/doc/local-redirect/index.html"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;lib-search-dirs&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/usr/local/opt/librsvg/lib/"&lt;/span&gt; &lt;span class="no"&gt;#f&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;h4 id="racket-ffi-使用相关说明"&gt;racket ffi 使用相关说明&lt;/h4&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;http://prl.ccs.neu.edu/blog/2016/06/27/tutorial-using-racket-s-ffi/&lt;/li&gt;
+ &lt;li&gt;http://prl.ccs.neu.edu/blog/2016/06/29/tutorial-racket-ffi-part&amp;ndash;2/&lt;/li&gt;
+ &lt;li&gt;http://prl.ccs.neu.edu/blog/2016/07/11/tutorial-racket-ffi-part&amp;ndash;3/&lt;/li&gt;&lt;/ul&gt;</content></entry>
  <entry>
   <title type="text">学习 Racket 语言</title>
   <link rel="alternate" href="http://alex-1q84.github.io/2020/07/learnning-racket-lang.html?utm_source=racket&amp;utm_medium=Atom" />

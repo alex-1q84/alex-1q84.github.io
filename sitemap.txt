@@ -1,2 +1,3 @@
+http://alex-1q84.github.io/2022/06/config-racket-rsvg-lib-to-use-librsvg-via-ffi-in-racket.html
 http://alex-1q84.github.io/2020/07/learnning-racket-lang.html
 http://alex-1q84.github.io/About.html

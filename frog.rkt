@@ -16,10 +16,10 @@
   (~> xs
       (syntax-highlight #:python-executable (if (eq? (system-type) 'windows)
                                                 "python.exe"
-                                                "python")
-                        #:line-numbers? #t
+                                                "python3")
+                        #:line-numbers? #f
                         #:css-class "source")
-      (auto-embed-tweets #:parents? #t)
+      (auto-embed-tweets #:parents? #f)
       (add-racket-doc-links #:code? #t #:prose? #f)))
 
 ;; Called from `raco frog --clean`.

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <rss version="2.0">
  <channel>
-  <title>Alex-1Q84: Posts tagged 'racket'</title>
-  <description>Alex-1Q84: Posts tagged 'racket'</description>
-  <link>http://alex-1q84.github.io/tags/racket.html</link>
+  <title>Alex-1Q84: Posts tagged 'ffi'</title>
+  <description>Alex-1Q84: Posts tagged 'ffi'</description>
+  <link>http://alex-1q84.github.io/tags/ffi.html</link>
   <lastBuildDate>Fri, 17 Jun 2022 06:31:39 UT</lastBuildDate>
   <pubDate>Fri, 17 Jun 2022 06:31:39 UT</pubDate>
   <ttl>1800</ttl>
   <item>
    <title>config racket/rsvg lib to use librsvg via FFI in Racket</title>
-   <link>http://alex-1q84.github.io/2022/06/config-racket-rsvg-lib-to-use-librsvg-via-ffi-in-racket.html?utm_source=racket&amp;utm_medium=RSS</link>
+   <link>http://alex-1q84.github.io/2022/06/config-racket-rsvg-lib-to-use-librsvg-via-ffi-in-racket.html?utm_source=ffi&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-alex-1q84-github-io:-2022-06-config-racket-rsvg-lib-to-use-librsvg-via-ffi-in-racket-html</guid>
    <pubDate>Fri, 17 Jun 2022 06:31:39 UT</pubDate>
    <author>Alex-1Q84</author>
@@ -121,32 +121,4 @@
 &lt;ul&gt;
  &lt;li&gt;http://prl.ccs.neu.edu/blog/2016/06/27/tutorial-using-racket-s-ffi/&lt;/li&gt;
  &lt;li&gt;http://prl.ccs.neu.edu/blog/2016/06/29/tutorial-racket-ffi-part&amp;ndash;2/&lt;/li&gt;
- &lt;li&gt;http://prl.ccs.neu.edu/blog/2016/07/11/tutorial-racket-ffi-part&amp;ndash;3/&lt;/li&gt;&lt;/ul&gt;</description></item>
-  <item>
-   <title>学习 Racket 语言</title>
-   <link>http://alex-1q84.github.io/2020/07/learnning-racket-lang.html?utm_source=racket&amp;utm_medium=RSS</link>
-   <guid isPermaLink="false">urn:http-alex-1q84-github-io:-2020-07-learnning-racket-lang-html</guid>
-   <pubDate>Mon, 06 Jul 2020 13:41:11 UT</pubDate>
-   <author>Alex-1Q84</author>
-   <description>
-&lt;h4 id="1-最重要的事情是练习练习练习"&gt;1. 最重要的事情是练习练习练习&lt;/h4&gt;
-
-&lt;p&gt;一开始可以跟着 &lt;a href="https://acl.readthedocs.io/en/latest/zhCN/ch7-cn.html"&gt;ANSI Common Lisp&lt;/a&gt; 这本书做练习，前七章非常好，内容基本可以套用到 racket 上。已经有热心人翻译成中文了。这是 Common Lisp 的&lt;a href="http://clhs.lisp.se/Body/06_aac.htm"&gt;文档&lt;/a&gt;，对照阅读出现语法理解问题时可以使用。&lt;/p&gt;
-
-&lt;h4 id="2-更多练习"&gt;2. 更多练习&lt;/h4&gt;
-
-&lt;p&gt;可以使用 &lt;a href="https://www.realmofracket.com/"&gt;Realm of Racket&lt;/a&gt; 这本书，跟着书抄代码，做做 challenges 。这本书跟 &lt;a href="https://htdp.org/2019-02-24/index.html"&gt;How to Design Programs, Second Edition&lt;/a&gt; （后面简称 2htdp）这本书有很大关系，许多例子是基于 2htdp 所提供的工具包实现的，学习的时候可以顺便看看 2htdp 的工具包文档说明，DrRacket 自带了这部分说明文档，练习时可以方便地查看。Realm of Racket 这本书是收费的，质量非常不错，虽然对于国内来说价格略贵，建议用起来感动的话还是用实际行动支持下作者。&lt;/p&gt;
-
-&lt;h4 id="3-进阶"&gt;3. 进阶&lt;/h4&gt;
-
-&lt;p&gt;跟着 &lt;a href="https://beautifulracket.com/stacker/the-reader.html"&gt;Beautiful Racket&lt;/a&gt; 学习 racket 强大的宏系统。&lt;/p&gt;
-
-&lt;h4 id="4-有经验的程序员"&gt;4. 有经验的程序员&lt;/h4&gt;
-
-&lt;p&gt;对于有经验的程序员，可以从 racket 自带的 《More: Systems Programming with Racket》入手，在 racket 自带文档中搜索即可看到。跟着这个教程抄一遍代码是个很好的路子，可以作为使用 racket 快速上手做一些实际的事情的入口，抄完这个代码可以通过这个页面的链接做一些扩展了解。&lt;/p&gt;
-
-&lt;h4 id="5-其他"&gt;5. 其他&lt;/h4&gt;
-
-&lt;p&gt;另找到一本 racket 入门练习书 &lt;a href="http://picturingprograms.com/"&gt;Picturing Programs: an Introduction to Computer Programming&lt;/a&gt; ，和 2htdp 也有莫大渊源，这本书可以免费获取，或许可以作为 Realm of Racket 的替代品（不负责任），合适的话也请赞助作者。&lt;/p&gt;
-
-&lt;p&gt;附上 Racket 和 Common Lisp 的语法介绍，练习时可以对照感受下异同 &lt;a href="https://learnxinyminutes.com/docs/zh-cn/racket-cn/"&gt;Racket&lt;/a&gt; &lt;a href="https://learnxinyminutes.com/docs/common-lisp/"&gt;Common Lisp&lt;/a&gt;&lt;/p&gt;&lt;a href="http://alex-1q84.github.io/2020/07/learnning-racket-lang.html?utm_source=racket&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item></channel></rss>
+ &lt;li&gt;http://prl.ccs.neu.edu/blog/2016/07/11/tutorial-racket-ffi-part&amp;ndash;3/&lt;/li&gt;&lt;/ul&gt;</description></item></channel></rss>
