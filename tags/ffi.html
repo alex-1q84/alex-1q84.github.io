@@ -100,17 +100,10 @@
 <p>I have a little Racket program that dependences <code>racket/rsvg</code>, so I install the <code>racket/rsvg</code> lib on my macOS using under command</p>
 
 <div class="brush: bash">
- <table class="sourcetable">
-  <tbody>
-   <tr>
-    <td class="linenos">
-     <div class="linenodiv">
-      <pre><span class="normal">1</span></pre></div></td>
-    <td class="code">
-     <div class="source">
-      <pre><span></span>raco pkg install -u rsvg
+ <div class="source">
+  <pre><span></span>raco pkg install -u rsvg
 </pre></div>
-</td></tr></tbody></table>
+
 </div>
 
 <p>but when I then run the program, it produces some error messages</p>
@@ -128,51 +121,29 @@
 <p>as the racket document describes, we can use the code under here to get the current lib search dirs</p>
 
 <div class="brush: racket">
- <table class="sourcetable">
-  <tbody>
-   <tr>
-    <td class="linenos">
-     <div class="linenodiv">
-      <pre><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td>
-    <td class="code">
-     <div class="source">
-      <pre><span></span><span class="p">(</span><span class="k"><a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit">require</a></span> <span class="n">setup/dirs</span><span class="p">)</span>
+ <div class="source">
+  <pre><span></span><span class="p">(</span><span class="k"><a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit">require</a></span> <span class="n">setup/dirs</span><span class="p">)</span>
 <span class="p">(</span><span class="n"><a href="http://docs.racket-lang.org/raco/dirs.html#(def._((lib._setup/dirs..rkt)._get-lib-search-dirs))" style="color: inherit">get-lib-search-dirs</a></span><span class="p">)</span>
 </pre></div>
-</td></tr></tbody></table>
+
 </div>
 
 <p>on my computer the result is <code>'(#&lt;path:/Users/mywo/Library/Racket/7.9/lib&gt; #&lt;path:/usr/local/opt/Racket/lib&gt;)</code>. and my librsvg lib path is <code>/usr/local/Cellar/librsvg/2.48.8/lib/librsvg-2.2.dylib</code>, which can find with <code>homebrew</code></p>
 
 <div class="brush: bash">
- <table class="sourcetable">
-  <tbody>
-   <tr>
-    <td class="linenos">
-     <div class="linenodiv">
-      <pre><span class="normal">1</span></pre></div></td>
-    <td class="code">
-     <div class="source">
-      <pre><span></span>brew list librsvg
+ <div class="source">
+  <pre><span></span>brew list librsvg
 </pre></div>
-</td></tr></tbody></table>
+
 </div>
 
 <p>if you don&rsquo;t have librsvg in you system, you can install it using Homebrew</p>
 
 <div class="brush: bash">
- <table class="sourcetable">
-  <tbody>
-   <tr>
-    <td class="linenos">
-     <div class="linenodiv">
-      <pre><span class="normal">1</span></pre></div></td>
-    <td class="code">
-     <div class="source">
-      <pre><span></span>brew install librsvg
+ <div class="source">
+  <pre><span></span>brew install librsvg
 </pre></div>
-</td></tr></tbody></table>
+
 </div>
 
 <p>the racket document shows we can config lib search dirs, follow the <a href="https://docs.racket-lang.org/raco/config-file.html">Installation Configuration and Search Paths</a> I changed my racket config file <code>/Applications/Racket v7.9/etc/config.rktd</code>, add the <code>'lib-search-dirs'</code> setting to it, and my program running correctly.</p>
@@ -180,23 +151,13 @@
 <p>here is my <code>config.rktd</code> content</p>
 
 <div class="brush: racket">
- <table class="sourcetable">
-  <tbody>
-   <tr>
-    <td class="linenos">
-     <div class="linenodiv">
-      <pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td>
-    <td class="code">
-     <div class="source">
-      <pre><span></span><span class="o">#hash</span><span class="p">((</span><span class="ss">build-stamp</span> <span class="o">.</span> <span class="s2">""</span><span class="p">)</span>
+ <div class="source">
+  <pre><span></span><span class="o">#hash</span><span class="p">((</span><span class="ss">build-stamp</span> <span class="o">.</span> <span class="s2">""</span><span class="p">)</span>
       <span class="p">(</span><span class="ss">catalogs</span> <span class="o">.</span> <span class="p">(</span><span class="s2">"https://download.racket-lang.org/releases/7.9/catalog/"</span> <span class="no">#f</span><span class="p">))</span>
       <span class="p">(</span><span class="ss">doc-search-url</span> <span class="o">.</span> <span class="s2">"https://download.racket-lang.org/releases/7.9/doc/local-redirect/index.html"</span><span class="p">)</span>
       <span class="p">(</span><span class="ss">lib-search-dirs</span> <span class="o">.</span> <span class="p">(</span><span class="s2">"/usr/local/opt/librsvg/lib/"</span> <span class="no">#f</span><span class="p">)))</span>
 </pre></div>
-</td></tr></tbody></table>
+
 </div>
 
 <h4 id="racket-ffi-使用相关说明">racket ffi 使用相关说明</h4>
