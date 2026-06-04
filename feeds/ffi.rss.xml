@@ -18,7 +18,7 @@
 
 &lt;div class="brush: bash"&gt;
  &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;raco pkg install -u rsvg
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;raco&lt;span class="w"&gt; &lt;/span&gt;pkg&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-u&lt;span class="w"&gt; &lt;/span&gt;rsvg
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
@@ -39,7 +39,7 @@
 
 &lt;div class="brush: racket"&gt;
  &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit"&gt;require&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;setup/dirs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit"&gt;require&lt;/a&gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;setup/dirs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;&lt;a href="http://docs.racket-lang.org/raco/dirs.html#(def._((lib._setup/dirs..rkt)._get-lib-search-dirs))" style="color: inherit"&gt;get-lib-search-dirs&lt;/a&gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -49,7 +49,7 @@
 
 &lt;div class="brush: bash"&gt;
  &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew list librsvg
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;list&lt;span class="w"&gt; &lt;/span&gt;librsvg
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
@@ -58,7 +58,7 @@
 
 &lt;div class="brush: bash"&gt;
  &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew install librsvg
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;librsvg
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
@@ -69,10 +69,10 @@
 
 &lt;div class="brush: racket"&gt;
  &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;#hash&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="ss"&gt;build-stamp&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s2"&gt;""&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;catalogs&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"https://download.racket-lang.org/releases/7.9/catalog/"&lt;/span&gt; &lt;span class="no"&gt;#f&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;doc-search-url&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s2"&gt;"https://download.racket-lang.org/releases/7.9/doc/local-redirect/index.html"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;lib-search-dirs&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/usr/local/opt/librsvg/lib/"&lt;/span&gt; &lt;span class="no"&gt;#f&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;#hash&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="ss"&gt;build-stamp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;""&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;catalogs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"https://download.racket-lang.org/releases/7.9/catalog/"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;#f&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;doc-search-url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"https://download.racket-lang.org/releases/7.9/doc/local-redirect/index.html"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;lib-search-dirs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/usr/local/opt/librsvg/lib/"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;#f&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;

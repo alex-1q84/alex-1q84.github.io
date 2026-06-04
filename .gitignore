@@ -118,3 +118,10 @@ target/
 
 # racket
 .frog
+
+# Frog generated output
+/*.html
+/20*/
+/feeds/
+/tags/
+/sitemap.txt

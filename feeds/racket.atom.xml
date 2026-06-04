@@ -18,7 +18,7 @@
 
 &lt;div class="brush: bash"&gt;
  &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;raco pkg install -u rsvg
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;raco&lt;span class="w"&gt; &lt;/span&gt;pkg&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-u&lt;span class="w"&gt; &lt;/span&gt;rsvg
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
@@ -39,7 +39,7 @@
 
 &lt;div class="brush: racket"&gt;
  &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit"&gt;require&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;setup/dirs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit"&gt;require&lt;/a&gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;setup/dirs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;&lt;a href="http://docs.racket-lang.org/raco/dirs.html#(def._((lib._setup/dirs..rkt)._get-lib-search-dirs))" style="color: inherit"&gt;get-lib-search-dirs&lt;/a&gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -49,7 +49,7 @@
 
 &lt;div class="brush: bash"&gt;
  &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew list librsvg
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;list&lt;span class="w"&gt; &lt;/span&gt;librsvg
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
@@ -58,7 +58,7 @@
 
 &lt;div class="brush: bash"&gt;
  &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew install librsvg
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;librsvg
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
@@ -69,10 +69,10 @@
 
 &lt;div class="brush: racket"&gt;
  &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;#hash&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="ss"&gt;build-stamp&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s2"&gt;""&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;catalogs&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"https://download.racket-lang.org/releases/7.9/catalog/"&lt;/span&gt; &lt;span class="no"&gt;#f&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;doc-search-url&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s2"&gt;"https://download.racket-lang.org/releases/7.9/doc/local-redirect/index.html"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;lib-search-dirs&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/usr/local/opt/librsvg/lib/"&lt;/span&gt; &lt;span class="no"&gt;#f&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;#hash&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="ss"&gt;build-stamp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;""&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;catalogs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"https://download.racket-lang.org/releases/7.9/catalog/"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;#f&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;doc-search-url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"https://download.racket-lang.org/releases/7.9/doc/local-redirect/index.html"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;lib-search-dirs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/usr/local/opt/librsvg/lib/"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;#f&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
@@ -85,8 +85,8 @@
  &lt;li&gt;http://prl.ccs.neu.edu/blog/2016/07/11/tutorial-racket-ffi-part&amp;ndash;3/&lt;/li&gt;&lt;/ul&gt;</content></entry>
  <entry>
   <title type="text">学习 Racket 语言</title>
-  <link rel="alternate" href="http://alex-1q84.github.io/2020/07/learnning-racket-lang.html?utm_source=racket&amp;utm_medium=Atom" />
-  <id>urn:http-alex-1q84-github-io:-2020-07-learnning-racket-lang-html</id>
+  <link rel="alternate" href="http://alex-1q84.github.io/2020/07/%E5%AD%A6%E4%B9%A0-racket-%E8%AF%AD%E8%A8%80.html?utm_source=racket&amp;utm_medium=Atom" />
+  <id>urn:http-alex-1q84-github-io:-2020-07-E5-AD-A6-E4-B9-A0-racket-E8-AF-AD-E8-A8-80-html</id>
   <published>2020-07-06T13:41:11Z</published>
   <updated>2020-07-06T13:41:11Z</updated>
   <author>
@@ -112,4 +112,4 @@
 
 &lt;p&gt;另找到一本 racket 入门练习书 &lt;a href="http://picturingprograms.com/"&gt;Picturing Programs: an Introduction to Computer Programming&lt;/a&gt; ，和 2htdp 也有莫大渊源，这本书可以免费获取，或许可以作为 Realm of Racket 的替代品（不负责任），合适的话也请赞助作者。&lt;/p&gt;
 
-&lt;p&gt;附上 Racket 和 Common Lisp 的语法介绍，练习时可以对照感受下异同 &lt;a href="https://learnxinyminutes.com/docs/zh-cn/racket-cn/"&gt;Racket&lt;/a&gt; &lt;a href="https://learnxinyminutes.com/docs/common-lisp/"&gt;Common Lisp&lt;/a&gt;&lt;/p&gt;&lt;a href="http://alex-1q84.github.io/2020/07/learnning-racket-lang.html?utm_source=racket&amp;amp;utm_medium=Atom"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</content></entry></feed>
+&lt;p&gt;附上 Racket 和 Common Lisp 的语法介绍，练习时可以对照感受下异同 &lt;a href="https://learnxinyminutes.com/docs/zh-cn/racket-cn/"&gt;Racket&lt;/a&gt; &lt;a href="https://learnxinyminutes.com/docs/common-lisp/"&gt;Common Lisp&lt;/a&gt;&lt;/p&gt;&lt;a href="http://alex-1q84.github.io/2020/07/%E5%AD%A6%E4%B9%A0-racket-%E8%AF%AD%E8%A8%80.html?utm_source=racket&amp;amp;utm_medium=Atom"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</content></entry></feed>
