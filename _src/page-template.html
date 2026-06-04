@@ -125,5 +125,22 @@
     <!-- </body> JS -->
     <script type="text/javascript" src="@|uri-prefix|/js/jquery-3.2.1.slim.min.js"></script>
     <script type="text/javascript" src="@|uri-prefix|/js/bootstrap.bundle.min.js"></script>
+    <script>
+    (function(){
+      var items=document.querySelectorAll('#content .post-item');
+      if(!items.length)return;
+      var lastYear=null;
+      items.forEach(function(el){
+        var y=el.getAttribute('data-year');
+        if(y!==lastYear){
+          var h=document.createElement('h2');
+          h.className='year-header';
+          h.textContent=y;
+          el.parentNode.insertBefore(h,el);
+          lastYear=y;
+        }
+      });
+    })();
+    </script>
   </body>
 </html>

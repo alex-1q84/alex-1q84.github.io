@@ -39,6 +39,40 @@ article {
     margin-bottom: 2em;
 }
 
+/* Year-grouped post list on index */
+.year-header {
+    font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--color-border-muted);
+}
+
+.year-header:first-child {
+    margin-top: 0;
+}
+
+.post-item {
+    padding: 0.35rem 0;
+}
+
+.post-item .post-title {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #3d3832;
+    text-decoration: none;
+    border-bottom: none;
+    transition: color .2s ease;
+}
+
+.post-item .post-title:hover {
+    color: #1a1a1a;
+    text-decoration: underline;
+}
+
 article header h1,
 article header h2 {
     font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", serif;
@@ -223,4 +257,26 @@ footer a[href]:hover {
 .dropdown-item:focus {
     background-color: rgba(165,158,145,0.12) !important;
     color: #3d3832 !important;
+}
+
+/* Pagination — warm editorial style */
+.pagination {
+    gap: 0.5rem;
+    margin: 1.5rem 0 0;
+}
+
+.page-link {
+    color: #6B4C2A !important;
+    background-color: transparent;
+    border: 1px solid var(--color-border-muted);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+}
+
+.page-link:hover {
+    color: #4A3420 !important;
+    background-color: rgba(165,158,145,0.12);
+    border-color: var(--color-border-default);
 }
