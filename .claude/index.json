@@ -1,0 +1,148 @@
+{
+  "timestamp": "2026-06-04T11:01:10",
+  "project": "alex-1q84.github.io",
+  "description": "基于 Racket Frog 的静态博客，部署在 GitHub Pages",
+  "modules": [
+    {
+      "path": "_src",
+      "language": "Markdown + HTML (Frog at-exp)",
+      "role": "博客源文件：模板、博文、页面",
+      "entry_files": [
+        "_src/index-template.html",
+        "_src/post-template.html",
+        "_src/page-template.html"
+      ],
+      "interfaces": [
+        "_src/index-template.html (全局页面框架)",
+        "_src/post-template.html (单篇博文页)",
+        "_src/page-template.html (博文摘要卡片)"
+      ],
+      "test_dir": null,
+      "important_paths": [
+        "_src/About.md",
+        "_src/posts/2020-07-06-learnning-racket-lang.md",
+        "_src/posts/2022-06-17-config-racket-rsvg-lib-to-use-librsvg-via-ffi-in-racket.md"
+      ],
+      "coverage": {
+        "files_total": 7,
+        "files_scanned": 7,
+        "percentage": 100,
+        "gaps": []
+      }
+    },
+    {
+      "path": "css",
+      "language": "CSS",
+      "role": "样式文件",
+      "entry_files": ["css/custom.css"],
+      "interfaces": [],
+      "test_dir": null,
+      "important_paths": [
+        "css/custom.css",
+        "css/bootstrap.min.css",
+        "css/scribble.css",
+        "css/pygments.css",
+        "css/bootstrap.min.css.map"
+      ],
+      "coverage": {
+        "files_total": 5,
+        "files_scanned": 2,
+        "percentage": 40,
+        "gaps": ["bootstrap.min.css 和 scribble.css 为第三方库，仅读取了头部确认性质"]
+      }
+    },
+    {
+      "path": "js",
+      "language": "JavaScript",
+      "role": "前端库",
+      "entry_files": [],
+      "interfaces": [],
+      "test_dir": null,
+      "important_paths": [
+        "js/jquery-3.2.1.slim.min.js",
+        "js/bootstrap.bundle.min.js"
+      ],
+      "coverage": {
+        "files_total": 2,
+        "files_scanned": 0,
+        "percentage": 0,
+        "gaps": ["第三方压缩库，未读取内容"]
+      }
+    },
+    {
+      "path": "img",
+      "language": "Binary",
+      "role": "静态图片资源",
+      "entry_files": [],
+      "interfaces": [],
+      "test_dir": null,
+      "important_paths": [
+        "img/feed.png",
+        "img/1x1.gif"
+      ],
+      "coverage": {
+        "files_total": 2,
+        "files_scanned": 0,
+        "percentage": 0,
+        "gaps": ["二进制文件，未读取"]
+      }
+    },
+    {
+      "path": ". (root scripts)",
+      "language": "Bash",
+      "role": "构建/发布/新建博文辅助脚本",
+      "entry_files": [
+        "Makefile",
+        "publish.sh"
+      ],
+      "interfaces": [
+        "postmd.sh (新建带日期博文)",
+        "postsbl.sh (新建不带日期博文)",
+        "publish.sh (发布到 gh-pages)",
+        "commit_changes.sh (清理并提交)"
+      ],
+      "test_dir": null,
+      "important_paths": [
+        "Makefile",
+        "publish.sh",
+        "postmd.sh",
+        "postsbl.sh",
+        "commit_changes.sh"
+      ],
+      "coverage": {
+        "files_total": 5,
+        "files_scanned": 5,
+        "percentage": 100,
+        "gaps": []
+      }
+    }
+  ],
+  "overall_coverage": {
+    "estimated_total_files": 21,
+    "scanned_files": 14,
+    "percentage": 67,
+    "note": "未扫描的文件全部为第三方库（Bootstrap CSS/JS、jQuery）和二进制图片，无信息缺口"
+  },
+  "ignored": {
+    "patterns_source": ".gitignore",
+    "ignored_dirs": [".git", ".idea", "target"],
+    "skipped_binary": [
+      "css/bootstrap.min.css",
+      "css/bootstrap.min.css.map",
+      "js/jquery-3.2.1.slim.min.js",
+      "js/bootstrap.bundle.min.js",
+      "img/feed.png",
+      "img/1x1.gif"
+    ],
+    "skipped_temp": [
+      "_src/posts/.2022-06-17-config-racket-rsvg-lib-to-use-librsvg-via-ffi-in-racket.md.~undo-tree~"
+    ]
+  },
+  "gap_list": [],
+  "truncated": false,
+  "documents_generated": [
+    "CLAUDE.md",
+    "_src/CLAUDE.md",
+    ".claude/index.json"
+  ]
+}
