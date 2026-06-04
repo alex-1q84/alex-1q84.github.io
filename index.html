@@ -51,16 +51,6 @@
           <ul class="navbar-nav mr-auto">
 
 
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                Tags <b class="caret"></b>
-              </a>
-
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="/tags/ffi.html">ffi</a><a class="dropdown-item" href="/tags/function-progamming.html">function progamming</a><a class="dropdown-item" href="/tags/learn.html">learn</a><a class="dropdown-item" href="/tags/racket.html">racket</a>
-              </div>
-            </li>
-
             <li>
               <a class="nav-link" href="/About.html">About</a>
             </li> 
@@ -90,118 +80,16 @@
 
 
 
-          <article>
-  <header>
-    <h2><a href='/2022/06/config-racket-rsvg-lib-to-use-librsvg-via-ffi-in-racket.html'>config racket/rsvg lib to use librsvg via FFI in Racket</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2022-06-17" pubdate="true">2022-06-17</time> :: <span class="tags"><a href="/tags/racket.html">racket</a>, <a href="/tags/ffi.html">ffi</a></span></p>
-    <p class='authors'>By: <span class="authors">Alex-1Q84</span></p>
-  </header>
-
-<p>I have a little Racket program that dependences <code>racket/rsvg</code>, so I install the <code>racket/rsvg</code> lib on my macOS using under command</p>
-
-<div class="brush: bash">
- <div class="source">
-  <pre><span></span>raco<span class="w"> </span>pkg<span class="w"> </span>install<span class="w"> </span>-u<span class="w"> </span>rsvg
-</pre></div>
-
+          <div class="post-item" data-year="2022">
+  <a class="post-title" href='/2022/06/config-racket-rsvg-lib-to-use-librsvg-via-ffi-in-racket.html'>config racket/rsvg lib to use librsvg via FFI in Racket</a>
+</div>
+<div class="post-item" data-year="2020">
+  <a class="post-title" href='/2020/07/%E5%AD%A6%E4%B9%A0-racket-%E8%AF%AD%E8%A8%80.html'>学习 Racket 语言</a>
 </div>
 
-<p>but when I then run the program, it produces some error messages</p>
-
-<blockquote>
- <p>ffi-lib: couldn&rsquo;t open &ldquo;librsvg&ndash;2.2.dylib&rdquo; (dlopen(librsvg&ndash;2.2.dylib, 6): image not found)</p></blockquote>
-
-<p>after check the racket&rsquo;s <code>ffi-lib</code> doc, I fixed it, the follow is How I fix the problem. originally posted on <a href="https://github.com/takikawa/racket-rsvg/issues/7#issuecomment-729429563">github</a></p>
-
-<p>I have the same problem, and when I checked the method <code>ffi-lib</code> <a href="https://docs.racket-lang.org/foreign/Loading_Foreign_Libraries.html#%28def._%28%28lib._ffi%2Funsafe..rkt%29._ffi-lib%29%29">doc</a>, it explains how racket finds ffi lib path</p>
-
-<blockquote>
- <p>If <em>path</em> is not an absolute path, look in each directory reported by <code>get-lib-dirs</code>; the default list is the result of <code>(get-lib-search-dirs)</code>.</p></blockquote>
-
-<p>as the racket document describes, we can use the code under here to get the current lib search dirs</p>
-
-<div class="brush: racket">
- <div class="source">
-  <pre><span></span><span class="p">(</span><span class="k"><a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit">require</a></span><span class="w"> </span><span class="n">setup/dirs</span><span class="p">)</span>
-<span class="p">(</span><span class="n"><a href="http://docs.racket-lang.org/raco/dirs.html#(def._((lib._setup/dirs..rkt)._get-lib-search-dirs))" style="color: inherit">get-lib-search-dirs</a></span><span class="p">)</span>
-</pre></div>
-
-</div>
-
-<p>on my computer the result is <code>'(#&lt;path:/Users/mywo/Library/Racket/7.9/lib&gt; #&lt;path:/usr/local/opt/Racket/lib&gt;)</code>. and my librsvg lib path is <code>/usr/local/Cellar/librsvg/2.48.8/lib/librsvg-2.2.dylib</code>, which can find with <code>homebrew</code></p>
-
-<div class="brush: bash">
- <div class="source">
-  <pre><span></span>brew<span class="w"> </span>list<span class="w"> </span>librsvg
-</pre></div>
-
-</div>
-
-<p>if you don&rsquo;t have librsvg in you system, you can install it using Homebrew</p>
-
-<div class="brush: bash">
- <div class="source">
-  <pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>librsvg
-</pre></div>
-
-</div>
-
-<p>the racket document shows we can config lib search dirs, follow the <a href="https://docs.racket-lang.org/raco/config-file.html">Installation Configuration and Search Paths</a> I changed my racket config file <code>/Applications/Racket v7.9/etc/config.rktd</code>, add the <code>'lib-search-dirs'</code> setting to it, and my program running correctly.</p>
-
-<p>here is my <code>config.rktd</code> content</p>
-
-<div class="brush: racket">
- <div class="source">
-  <pre><span></span><span class="o">#hash</span><span class="p">((</span><span class="ss">build-stamp</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="ss">catalogs</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="p">(</span><span class="s2">"https://download.racket-lang.org/releases/7.9/catalog/"</span><span class="w"> </span><span class="no">#f</span><span class="p">))</span>
-<span class="w">      </span><span class="p">(</span><span class="ss">doc-search-url</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s2">"https://download.racket-lang.org/releases/7.9/doc/local-redirect/index.html"</span><span class="p">)</span>
-<span class="w">      </span><span class="p">(</span><span class="ss">lib-search-dirs</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="p">(</span><span class="s2">"/usr/local/opt/librsvg/lib/"</span><span class="w"> </span><span class="no">#f</span><span class="p">)))</span>
-</pre></div>
-
-</div>
-
-<h4 id="racket-ffi-使用相关说明">racket ffi 使用相关说明</h4>
-
-<ul>
- <li>http://prl.ccs.neu.edu/blog/2016/06/27/tutorial-using-racket-s-ffi/</li>
- <li>http://prl.ccs.neu.edu/blog/2016/06/29/tutorial-racket-ffi-part&ndash;2/</li>
- <li>http://prl.ccs.neu.edu/blog/2016/07/11/tutorial-racket-ffi-part&ndash;3/</li></ul>
-
-</article>
-<article>
-  <header>
-    <h2><a href='/2020/07/%E5%AD%A6%E4%B9%A0-racket-%E8%AF%AD%E8%A8%80.html'>学习 Racket 语言</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2020-07-06" pubdate="true">2020-07-06</time> :: <span class="tags"><a href="/tags/racket.html">racket</a>, <a href="/tags/learn.html">learn</a>, <a href="/tags/function-progamming.html">function progamming</a></span></p>
-    <p class='authors'>By: <span class="authors">Alex-1Q84</span></p>
-  </header>
-
-<h4 id="1-最重要的事情是练习练习练习">1. 最重要的事情是练习练习练习</h4>
-
-<p>一开始可以跟着 <a href="https://acl.readthedocs.io/en/latest/zhCN/ch7-cn.html">ANSI Common Lisp</a> 这本书做练习，前七章非常好，内容基本可以套用到 racket 上。已经有热心人翻译成中文了。这是 Common Lisp 的<a href="http://clhs.lisp.se/Body/06_aac.htm">文档</a>，对照阅读出现语法理解问题时可以使用。</p>
-
-<h4 id="2-更多练习">2. 更多练习</h4>
-
-<p>可以使用 <a href="https://www.realmofracket.com/">Realm of Racket</a> 这本书，跟着书抄代码，做做 challenges 。这本书跟 <a href="https://htdp.org/2019-02-24/index.html">How to Design Programs, Second Edition</a> （后面简称 2htdp）这本书有很大关系，许多例子是基于 2htdp 所提供的工具包实现的，学习的时候可以顺便看看 2htdp 的工具包文档说明，DrRacket 自带了这部分说明文档，练习时可以方便地查看。Realm of Racket 这本书是收费的，质量非常不错，虽然对于国内来说价格略贵，建议用起来感动的话还是用实际行动支持下作者。</p>
-
-<h4 id="3-进阶">3. 进阶</h4>
-
-<p>跟着 <a href="https://beautifulracket.com/stacker/the-reader.html">Beautiful Racket</a> 学习 racket 强大的宏系统。</p>
-
-<h4 id="4-有经验的程序员">4. 有经验的程序员</h4>
-
-<p>对于有经验的程序员，可以从 racket 自带的 《More: Systems Programming with Racket》入手，在 racket 自带文档中搜索即可看到。跟着这个教程抄一遍代码是个很好的路子，可以作为使用 racket 快速上手做一些实际的事情的入口，抄完这个代码可以通过这个页面的链接做一些扩展了解。</p>
-
-<h4 id="5-其他">5. 其他</h4>
-
-<p>另找到一本 racket 入门练习书 <a href="http://picturingprograms.com/">Picturing Programs: an Introduction to Computer Programming</a> ，和 2htdp 也有莫大渊源，这本书可以免费获取，或许可以作为 Realm of Racket 的替代品（不负责任），合适的话也请赞助作者。</p>
-
-<p>附上 Racket 和 Common Lisp 的语法介绍，练习时可以对照感受下异同 <a href="https://learnxinyminutes.com/docs/zh-cn/racket-cn/">Racket</a> <a href="https://learnxinyminutes.com/docs/common-lisp/">Common Lisp</a></p>
-  <footer>
-    <a href='/2020/07/%E5%AD%A6%E4%B9%A0-racket-%E8%AF%AD%E8%A8%80.html'>&hellip; more &hellip;</a>
-  </footer>
-</article>
+          <div class="tag-list">
+            <a class="tag-pill" href="/tags/ffi.html">ffi</a><a class="tag-pill" href="/tags/function-progamming.html">function progamming</a><a class="tag-pill" href="/tags/learn.html">learn</a><a class="tag-pill" href="/tags/racket.html">racket</a>
+          </div>
         </div>
       </div>
       <footer>
@@ -216,5 +104,22 @@
     <!-- </body> JS -->
     <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script>
+    (function(){
+      var items=document.querySelectorAll('#content .post-item');
+      if(!items.length)return;
+      var lastYear=null;
+      items.forEach(function(el){
+        var y=el.getAttribute('data-year');
+        if(y!==lastYear){
+          var h=document.createElement('h2');
+          h.className='year-header';
+          h.textContent=y;
+          el.parentNode.insertBefore(h,el);
+          lastYear=y;
+        }
+      });
+    })();
+    </script>
   </body>
 </html>

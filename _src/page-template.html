@@ -54,24 +54,6 @@
                 </li> })
 
 
-            @;{ Here we craft the dropdown links from a list of pairs.
-                The pairs are in the format '((name . url) ...) }
-
-            @(define (craft-tag-links listof-pairs)
-              @(map (lambda (pair)
-                @list{<a class="dropdown-item" href="@(cdr pair)">@(car pair)</a>})
-              listof-pairs))
-
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                Tags <b class="caret"></b>
-              </a>
-
-              <div class="dropdown-menu">
-                @craft-tag-links[(all-tag-pairs)]
-              </div>
-            </li>
-
             @ni[(string-append uri-prefix "/About.html") "About"]
 
             <li class="nav-item">
@@ -111,6 +93,16 @@
             @list{<h1>Posts tagged <em>@|tag|</em></h1>})
           @;{ The main page contents are in @contents }
           @|contents|
+          @;{ Flat tag list, only on the homepage }
+          @(when (string-ci=? uri-path
+                              (string-append uri-prefix
+                                             "/index.html"))
+            @list{
+            <div class="tag-list">
+              @(map (lambda (pair)
+                @list{<a class="tag-pill" href="@(cdr pair)">@(car pair)</a>})
+              (all-tag-pairs))
+            </div>})
         </div>
       </div>
       <footer>

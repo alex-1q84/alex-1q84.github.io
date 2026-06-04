@@ -51,16 +51,6 @@
           <ul class="navbar-nav mr-auto">
 
 
-            <li class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                Tags <b class="caret"></b>
-              </a>
-
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="/tags/ffi.html">ffi</a><a class="dropdown-item" href="/tags/function-progamming.html">function progamming</a><a class="dropdown-item" href="/tags/learn.html">learn</a><a class="dropdown-item" href="/tags/racket.html">racket</a>
-              </div>
-            </li>
-
             <li>
               <a class="nav-link" href="/About.html">About</a>
             </li> 
@@ -183,6 +173,8 @@
     </div>
   </footer>
 </article>
+
+
         </div>
       </div>
       <footer>
@@ -197,5 +189,22 @@
     <!-- </body> JS -->
     <script type="text/javascript" src="/js/jquery-3.2.1.slim.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script>
+    (function(){
+      var items=document.querySelectorAll('#content .post-item');
+      if(!items.length)return;
+      var lastYear=null;
+      items.forEach(function(el){
+        var y=el.getAttribute('data-year');
+        if(y!==lastYear){
+          var h=document.createElement('h2');
+          h.className='year-header';
+          h.textContent=y;
+          el.parentNode.insertBefore(h,el);
+          lastYear=y;
+        }
+      });
+    })();
+    </script>
   </body>
 </html>

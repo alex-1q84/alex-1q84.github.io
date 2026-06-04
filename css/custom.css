@@ -48,7 +48,6 @@ article {
     margin-bottom: 0.5rem;
     color: #1a1a1a;
     padding-bottom: 0.3em;
-    border-bottom: 1px solid var(--color-border-muted);
 }
 
 .year-header:first-child {
@@ -237,26 +236,39 @@ footer a[href]:hover {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2887,96,106,0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
-.dropdown-menu {
-    background-color: #F5F1EC;
-    border: 1px solid var(--color-border-muted);
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    padding: 0.4rem 0;
-    margin-top: 0.3rem;
+/* Flat tag list on homepage */
+.tag-list {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
 }
 
-.dropdown-item {
-    color: #57606a !important;
-    font-size: 0.9rem;
-    padding: 0.4rem 1.2rem;
-    transition: color .15s ease, background-color .15s ease;
+.tag-list::before {
+    content: "Tags";
+    font-size: 0.85rem;
+    color: var(--color-fg-muted);
+    margin-right: 0.2rem;
 }
 
-.dropdown-item:hover,
-.dropdown-item:focus {
-    background-color: rgba(165,158,145,0.12) !important;
-    color: #3d3832 !important;
+.tag-pill {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.85rem;
+    color: var(--color-fg-muted);
+    background-color: rgba(168,162,150,0.12);
+    border: 1px solid rgba(168,162,150,0.2);
+    border-radius: 4px;
+    text-decoration: none !important;
+    border-bottom: none !important;
+    transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+}
+
+.tag-pill:hover {
+    color: #3d3832;
+    background-color: rgba(168,162,150,0.25);
+    border-color: rgba(168,162,150,0.4);
 }
 
 /* Pagination — warm editorial style */
