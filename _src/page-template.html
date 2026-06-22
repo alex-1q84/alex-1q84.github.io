@@ -29,8 +29,8 @@
   </head>
   <body>
 
-    <!-- A standard Twitter Bootstrap nav bar -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <!-- Nav bar -->
+    <nav class="navbar navbar-expand-md navbar-light">
       <div class="container">
 
       <a href="@|uri-prefix|/index.html" class="navbar-brand">Alex-1Q84</a>
@@ -71,11 +71,6 @@
 
 
     <div class="container">
-      <div class="row">
-        @;{ Remember that Twitter Bootstrap has a 12 cell model. The
-            col-md-N classes should add up to 12.  For instance 3
-            "col-md-4" divs, or 2 "col-md-6" divs. }
-        <!-- Main column -->
         <div id="content" class="col-md-12">
           @;{ To put something only on the home page, check for
               @uri-path being "/index.html" }
@@ -104,13 +99,12 @@
               (all-tag-pairs))
             </div>})
         </div>
-      </div>
       <footer>
         <hr />
         <p>Site generated
         by <a href="https://github.com/greghendershott/frog">Frog</a>,
         the <strong>fr</strong>ozen bl<strong>og</strong> tool.</p>
-        <p>Using <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
+        <p>Using <a href="https://getbootstrap.com/">Bootstrap</a>.</p>
         @;{<p><em>Your legal notice here</em>.</p>}
       </footer>
     </div>

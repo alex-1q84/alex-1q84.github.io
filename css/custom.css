@@ -1,6 +1,8 @@
 /* custom.css */
 body {
     background-color: #F5F1EC;
+    background-image: url('bg.png');
+    background-repeat: repeat;
 }
 
 @media (min-width: 1200px) {
@@ -176,20 +178,20 @@ footer hr {
 }
 
 footer a[href] {
-    color: #6B4C2A !important;
+    color: #6B4C2A;
     text-decoration: none;
     border-bottom: 1px solid rgba(107,76,42,0.25);
     transition: color .2s ease, border-color .2s ease;
 }
 
 footer a[href]:hover {
-    color: #4A3420 !important;
+    color: #4A3420;
     border-bottom-color: #4A3420;
 }
 
-/* Navbar — warm editorial style overriding Bootstrap dark theme */
-.navbar.bg-dark {
-    background-color: transparent !important;
+/* Navbar — warm editorial style */
+.navbar {
+    background-color: transparent;
     border-bottom: 1px solid var(--color-border-muted);
     padding-top: 1.2rem;
     padding-bottom: 1.2rem;
@@ -199,41 +201,37 @@ footer a[href]:hover {
     font-family: "New York", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
     font-weight: 700;
     font-size: 1.3rem;
-    color: #1a1a1a !important;
+    color: #1a1a1a;
     letter-spacing: -0.02em;
     font-variant-numeric: lining-nums;
     font-feature-settings: "lnum" 1, "kern" 1;
 }
 
 .navbar-brand:hover {
-    color: #4A3420 !important;
+    color: #4A3420;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-    color: #57606a !important;
+.nav-link {
+    color: #57606a;
     font-size: 0.9rem;
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
     transition: color .2s ease, background-color .2s ease;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover,
-.navbar-dark .navbar-nav .nav-link:focus {
-    color: #3d3832 !important;
+.nav-link:hover,
+.nav-link:focus {
+    color: #3d3832;
     background-color: rgba(165,158,145,0.12);
 }
 
-.navbar-dark .navbar-nav .nav-link.dropdown-toggle::after {
-    color: inherit;
-}
-
-.navbar-dark .navbar-toggler {
-    border-color: rgba(165,158,145,0.3) !important;
+.navbar-toggler {
+    border-color: rgba(165,158,145,0.3);
     padding: 0.25rem 0.6rem;
 }
 
-.navbar-dark .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2887,96,106,0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2887,96,106,0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 /* Flat tag list on homepage */
