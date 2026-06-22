@@ -1,7 +1,9 @@
 #!/bin/bash
 
-function creat_and_open(){
-    emacs $(raco frog -n "$1" | egrep -o "[^ ]+$1[^ ]+")
+function open_post(){
+    local path
+    path=$(raco frog -n "$1" 2>&1 | grep -o '/[^ ]*\.md')
+    [[ -n "$path" ]] && e "$path"
 }
 
-[[ ! -z "$1" ]] && creat_and_open "$1" || (echo Usage: ; echo $0 post-name 1>&2)
+[[ -n "$1" ]] && open_post "$1" || (echo Usage: ; echo $0 post-name 1>&2)
