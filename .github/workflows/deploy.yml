@@ -1,0 +1,61 @@
+name: Deploy blog
+
+# 推送 master 后自动构建并发布到 gh-pages；也可在 Actions 页面手动触发
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+# GITHUB_TOKEN 由 Actions 自动注入、仅限本仓库 contents 写权限、日志中自动打码
+permissions:
+  contents: write
+
+# 连续推送时只保留最新一次部署
+concurrency:
+  group: deploy-gh-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 与 Frog 官方仓库 CI 相同的 Racket 安装方式
+      - name: Install Racket
+        uses: Bogdanp/setup-racket@v1.11
+        with:
+          architecture: 'x64'
+          distribution: 'full'
+          version: '9.1'
+
+      - name: Install deps
+        run: |
+          raco pkg install --auto frog
+          pip3 install pygments || pip3 install --break-system-packages pygments
+
+      - name: Build site
+        run: raco frog -b
+
+      # 只发布构建产物与静态资源，不包含源码和仓库文件
+      - name: Assemble site
+        run: |
+          mkdir site
+          cp -R index.html About.html sitemap.txt tags feeds css js img site/
+          for d in 20*/; do cp -R "$d" site/; done
+          [ -d posts ] && cp -R posts site/ || true
+          touch site/.nojekyll
+          ls -la site/
+
+      - name: Push to gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd site
+          git init -b gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -f .
+          git commit -m "deploy: build from master@${GITHUB_SHA:0:7}"
+          git push --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
