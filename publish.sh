@@ -6,7 +6,9 @@ git checkout gh-pages
 git reset --hard
 #清除本地库中构建过程生成的中间产物
 git clean -dqxf
-git pull
+#同步远端 gh-pages（Actions 发布会重写其历史，需重置到远端最新提交）
+git fetch origin
+git reset --hard origin/gh-pages
 git merge --no-ff --log master -m "git merge origin/master"
 
 if [ $? -eq '0' ]; then
