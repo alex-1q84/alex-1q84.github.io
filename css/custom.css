@@ -1,6 +1,6 @@
 /* custom.css */
 body {
-    background-color: #F5F1EC;
+    background-color: #F2F3ED;
     background-image: url('bg.png');
     background-repeat: repeat;
 }
@@ -12,11 +12,24 @@ body {
 }
 
 :root{
-    --color-neutral-muted: rgba(165,158,145,0.2);
-    --color-canvas-subtle: #EDEAE4;
-    --color-fg-muted: #57606a;
-    --color-border-default: #d5d0c8;
-    --color-border-muted: hsla(32,18%,78%,1);
+    /* Paper-book palette — warm ink on cream paper */
+    --paper:          #F2F3ED;
+    --paper-warm:     #ECE6D9;
+    --ink:            #2C2620;   /* titles — fresh letterpress ink */
+    --ink-soft:       #4A4036;   /* body / secondary */
+    --ink-muted:      #7A6F62;   /* labels, dates, marginalia */
+    --sepia:          #8B5A2B;   /* link accent — aged ink */
+    --sepia-deep:     #5E3A1A;   /* link hover */
+    --rule:           #DCD5C8;   /* hairline rules */
+    /* Legacy aliases (retained for existing rules) */
+    --color-neutral-muted: rgba(139, 90, 43, 0.07);
+    --color-canvas-subtle: #ECE6D9;
+    --color-fg-muted:      #7A6F62;
+    --color-border-default: #DCD5C8;
+    --color-border-muted:   #E0D9CC;
+    /* Book serif — Hermann Zapf's book faces with graceful fallbacks */
+    --font-book: "Iowan Old Style", "Palatino Linotype", "URW Palladio L",
+                 Palatino, "Book Antiqua", Georgia, serif;
 }
 
 /*
@@ -25,31 +38,113 @@ body {
 }
 */
 
-.h4, h4 {
-    padding-bottom: .3em;
-    font-size: 1.5em;
-    border-bottom: 1px solid var(--color-border-muted);
-    margin-top: 24px;
-    margin-bottom: 16px;
-    font-weight: 600;
-    line-height: 1.25;
-}
-
 article {
-    border-bottom: dashed gray 1px;
+    border-bottom: 1px solid var(--rule);
     padding-bottom: 2em;
     margin-bottom: 2em;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    line-height: 1.75;
 }
 
-/* Year-grouped post list on index */
-.year-header {
-    font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
-    color: #1a1a1a;
+/* Content area — shared book typography for non-article pages (About, tags) */
+#content {
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    line-height: 1.75;
+}
+
+#content > h1,
+#content > h2,
+#content > h3,
+#content > h4,
+#content > h5 {
+    font-family: var(--font-book);
+    color: var(--ink);
+    line-height: 1.3;
+}
+
+#content > h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0 0 0.8em;
     padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--rule);
+}
+
+#content > h2 { font-size: 1.5rem;  margin: 1.8em 0 0.6em; font-weight: 600; }
+#content > h3 { font-size: 1.25rem; margin: 1.6em 0 0.5em; font-weight: 600; }
+
+#content > p {
+    margin-bottom: 1.1em;
+    hyphens: auto;
+}
+
+article header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+}
+
+article header h1 + .date-and-tags,
+article .date-and-tags {
+    font-family: var(--font-book);
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 0.2rem;
+}
+
+article .authors {
+    color: var(--ink-muted);
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Article body — book typography */
+article p {
+    margin-bottom: 1.1em;
+    hyphens: auto;
+}
+
+article h2, article h3, article h4, article h5 {
+    font-family: var(--font-book);
+    color: var(--ink);
+    line-height: 1.3;
+}
+
+article h2 { font-size: 1.5rem;  margin: 1.8em 0 0.6em; font-weight: 600; }
+article h3 { font-size: 1.25rem; margin: 1.6em 0 0.5em; font-weight: 600; }
+article h4 {
+    padding-bottom: .25em;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--rule);
+    margin-top: 1.5em;
+    margin-bottom: 0.6em;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--ink);
+}
+
+article ul, article ol {
+    margin-bottom: 1.1em;
+    padding-left: 1.6em;
+}
+
+article li {
+    margin-bottom: 0.35em;
+}
+
+/* Year-grouped post list on index — acts as a book's chapter divider */
+.year-header {
+    font-family: var(--font-book);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-top: 2.2rem;
+    margin-bottom: 0.4rem;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    font-feature-settings: "lnum" 1, "kern" 1;
+    font-variant-numeric: lining-nums;
 }
 
 .year-header:first-child {
@@ -57,52 +152,46 @@ article {
 }
 
 .post-item {
-    padding: 0.35rem 0;
+    padding: 0.3rem 0;
+    line-height: 1.5;
 }
 
 .post-item .post-title {
-    font-size: 1.1rem;
+    font-family: var(--font-book);
+    font-size: 1.15rem;
     font-weight: 400;
-    color: #3d3832;
+    color: var(--ink-soft);
     text-decoration: none;
     border-bottom: none;
-    transition: color .2s ease;
+    transition: color .25s ease;
 }
 
 .post-item .post-title:hover {
-    color: #1a1a1a;
-    text-decoration: underline;
-}
-
-article header h1,
-article header h2 {
-    font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", serif;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    color: #1a1a1a;
+    color: var(--sepia);
+    text-decoration: none;
+    border-bottom: 1px solid var(--sepia);
 }
 
 #content article header h2 a {
-    color: #1a1a1a;
+    color: var(--ink);
     text-decoration: none;
     border-bottom: none;
 }
 
 #content article header h2 a:hover {
-    text-decoration: underline;
-    color: #1a1a1a;
-    border-bottom: none;
+    text-decoration: none;
+    color: var(--sepia);
+    border-bottom: 1px solid var(--sepia);
 }
 
 code {
-    color: #3d3832;
-    padding: .2em .4em;
+    color: var(--ink);
+    padding: .12em .35em;
     margin: 0;
     font-size: 85%;
-    background-color: var(--color-neutral-muted);
-    border: 1px solid rgba(168,162,150,0.15);
-    border-radius: 4px;
+    background-color: rgba(139, 90, 43, 0.06);
+    border: 1px solid rgba(139, 90, 43, 0.12);
+    border-radius: 3px;
     font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
 }
 
@@ -117,17 +206,19 @@ pre {
     font-size: 85%;
     line-height: 1.5;
     background-color: var(--color-canvas-subtle);
-    border: 1px solid rgba(165,158,145,0.28);
-    border-radius: 8px;
-    margin-bottom: 0;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    margin-bottom: 1.2em;
     margin-left: 0;
 }
 
 blockquote {
-    padding: 0 1em;
-    color: var(--color-fg-muted);
-    border-left: .25em solid var(--color-border-default);
-    margin: 0;
+    padding: 0.2em 1.2em;
+    color: var(--ink-muted);
+    font-style: italic;
+    border-left: .2em solid var(--sepia);
+    margin: 0 0 1.2em;
+    background-color: rgba(139, 90, 43, 0.03);
 }
 
 article img {
@@ -144,29 +235,29 @@ article img {
 }
 
 #content a {
-    color: #6B4C2A;
+    color: var(--sepia);
     text-decoration: none;
-    border-bottom: 1px solid rgba(107,76,42,0.25);
-    transition: color .2s ease, border-color .2s ease;
+    border-bottom: 1px solid rgba(139, 90, 43, 0.28);
+    transition: color .25s ease, border-color .25s ease;
 }
 
 #content a:hover {
-    color: #4A3420;
-    border-bottom-color: #4A3420;
+    color: var(--sepia-deep);
+    border-bottom-color: var(--sepia-deep);
 }
 
 article .tags a {
-    color: var(--color-fg-muted);
+    color: var(--ink-muted);
     border-bottom: none;
-    background-color: rgba(168,162,150,0.15);
-    padding: .15em .5em;
-    border-radius: 4px;
-    transition: color .2s ease, background-color .2s ease;
+    background-color: rgba(139, 90, 43, 0.05);
+    padding: .12em .55em;
+    border-radius: 3px;
+    transition: color .25s ease, background-color .25s ease;
 }
 
 article .tags a:hover {
-    color: #3d3832;
-    background-color: rgba(168,162,150,0.3);
+    color: var(--sepia-deep);
+    background-color: rgba(139, 90, 43, 0.12);
 }
 
 footer {
@@ -178,15 +269,15 @@ footer hr {
 }
 
 footer a[href] {
-    color: #6B4C2A;
+    color: var(--sepia);
     text-decoration: none;
-    border-bottom: 1px solid rgba(107,76,42,0.25);
-    transition: color .2s ease, border-color .2s ease;
+    border-bottom: 1px solid rgba(139, 90, 43, 0.28);
+    transition: color .25s ease, border-color .25s ease;
 }
 
 footer a[href]:hover {
-    color: #4A3420;
-    border-bottom-color: #4A3420;
+    color: var(--sepia-deep);
+    border-bottom-color: var(--sepia-deep);
 }
 
 /* Navbar — warm editorial style */
@@ -198,31 +289,31 @@ footer a[href]:hover {
 }
 
 .navbar-brand {
-    font-family: "New York", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
-    font-weight: 700;
-    font-size: 1.3rem;
-    color: #1a1a1a;
-    letter-spacing: -0.02em;
+    font-family: var(--font-book);
+    font-weight: 600;
+    font-size: 1.35rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
     font-variant-numeric: lining-nums;
     font-feature-settings: "lnum" 1, "kern" 1;
 }
 
 .navbar-brand:hover {
-    color: #4A3420;
+    color: var(--sepia-deep);
 }
 
 .nav-link {
-    color: #57606a;
+    color: var(--ink-muted);
     font-size: 0.9rem;
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
-    transition: color .2s ease, background-color .2s ease;
+    transition: color .25s ease, background-color .25s ease;
 }
 
 .nav-link:hover,
 .nav-link:focus {
-    color: #3d3832;
-    background-color: rgba(165,158,145,0.12);
+    color: var(--sepia-deep);
+    background-color: rgba(139, 90, 43, 0.06);
 }
 
 .navbar-toggler {
@@ -234,59 +325,89 @@ footer a[href]:hover {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2887,96,106,0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-/* Flat tag list on homepage */
+/* Flat tag list on homepage — like a book's index entries */
 .tag-list {
-    margin-top: 2.5rem;
+    margin-top: 2.8rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--rule);
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 0.4rem;
+    align-items: baseline;
+    gap: 0.3rem 0.5rem;
 }
 
 .tag-list::before {
-    content: "Tags";
+    content: "Index";
+    font-family: var(--font-book);
     font-size: 0.85rem;
-    color: var(--color-fg-muted);
-    margin-right: 0.2rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-right: 0.5rem;
 }
 
 .tag-pill {
+    font-family: var(--font-book);
     display: inline-block;
-    padding: 0.25rem 0.65rem;
-    font-size: 0.85rem;
-    color: var(--color-fg-muted);
-    background-color: rgba(168,162,150,0.12);
-    border: 1px solid rgba(168,162,150,0.2);
-    border-radius: 4px;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.9rem;
+    color: var(--sepia);
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
     text-decoration: none !important;
-    border-bottom: none !important;
-    transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+    transition: color .25s ease, border-color .25s ease;
 }
 
 .tag-pill:hover {
-    color: #3d3832;
-    background-color: rgba(168,162,150,0.25);
-    border-color: rgba(168,162,150,0.4);
+    color: var(--sepia-deep);
+    background-color: transparent;
+    border-bottom: 1px solid var(--sepia);
 }
 
 /* Pagination — warm editorial style */
 .pagination {
     gap: 0.5rem;
-    margin: 1.5rem 0 0;
+    margin: 1.8rem 0 0;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.2rem;
 }
 
 .page-link {
-    color: #6B4C2A !important;
+    color: var(--sepia) !important;
     background-color: transparent;
-    border: 1px solid var(--color-border-muted);
+    border: 1px solid var(--rule);
     border-radius: 6px;
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
-    transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+    font-family: var(--font-book);
+    transition: color .25s ease, background-color .25s ease, border-color .25s ease;
 }
 
 .page-link:hover {
-    color: #4A3420 !important;
-    background-color: rgba(165,158,145,0.12);
+    color: var(--sepia-deep) !important;
+    background-color: rgba(139, 90, 43, 0.06);
     border-color: var(--color-border-default);
+}
+
+/* Post older/newer navigation — strip Bootstrap borders, keep it quiet */
+article > footer .pagination {
+    border-top: none;
+    padding-top: 0;
+    gap: 0.6rem;
+}
+
+article > footer .page-link {
+    border: none;
+    border-radius: 0;
+    padding: 0.3rem 0;
+    font-size: 0.92rem;
+}
+
+article > footer .page-link:hover {
+    background-color: transparent;
+    text-decoration: none;
+    border-bottom: 1px solid var(--sepia);
 }
