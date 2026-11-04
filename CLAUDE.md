@@ -6,7 +6,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Alex-1Q84 的个人技术博客，使用 Racket 语言的 **Frog** 静态站点生成器构建，部署在 GitHub Pages。**不是 Jekyll**，构建命令是 `raco frog -b`。
 
-核心工作流：`_src/` 中的 Markdown 博文 + HTML 模板 → `raco frog -b` → 静态 HTML 输出到仓库根目录 → 推送 `gh-pages` 分支发布。`master` 分支保存源文件。
+核心工作流：`_src/` 中的 Markdown 博文 + HTML 模板 → `raco frog -b` → 静态 HTML 输出到仓库根目录 → 发布到 `gh-pages` 分支。`master` 分支保存源文件。
+
+发布方式：推送 `master` 后由 GitHub Actions（`.github/workflows/deploy.yml`）自动构建并发布到 `gh-pages`（孤儿分支，仅含构建产物），日常无需手动发布。`publish.sh` 为手动发布的备用方案。
 
 ## 常用命令
 
@@ -16,7 +18,7 @@ make build           # 构建静态页面
 make preview         # 构建并启动本地预览服务器
 make clean           # 清理构建产物
 ./postmd.sh <name>   # 新建带日期前缀的博文
-./publish.sh         # 合并 master 到 gh-pages 并发布
+./publish.sh         # 手动发布：合并 master 到 gh-pages 并构建推送
 ```
 
 ## 架构关键点
