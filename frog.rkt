@@ -6,7 +6,7 @@
 (define/contract (init)
   (-> any)
   (current-scheme/host "http://alex-1q84.github.io")
-  (current-title "Alex-1Q84")
+  (current-title "庭燎之光")
   (current-author "Alex-1Q84"))
 
 ;; Called once per post and non-post page, on the contents.
