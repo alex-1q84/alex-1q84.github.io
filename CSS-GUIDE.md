@@ -12,16 +12,16 @@
 
 | 用途 | 变量/值 | 说明 |
 |------|---------|------|
-| 页面背景 | `#F5F1EC`（body） | 素纸色，柔和暖白 |
-| 代码块背景 | `--color-canvas-subtle: #EDEAE4` | 比页面背景深一档，保持同色温 |
-| 正文链接 | `#6B4C2A` | 暖棕色，hover 加深至 `#4A3420` |
-| 文章标题 | `#1a1a1a` | 近纯黑，不用彩色 |
-| 品牌名 | `#1a1a1a` | 同文章标题 |
-| 弱化文字 | `--color-fg-muted: #57606a` | 日期、标签、页脚 |
-| 边框 | `--color-border-default: #d5d0c8` | 暖灰色 |
-| 行内代码底色 | `--color-neutral-muted: rgba(165,158,145,0.2)` | 暖色调透明度 |
+| 页面背景 | `--paper: #F2F3ED`（body） | 素纸色，柔和暖白 |
+| 代码块背景 | `--color-canvas-subtle: #ECE6D9` | 比页面背景深一档，保持同色温 |
+| 正文链接 | `--sepia: #8B5A2B` | 暖棕色，hover 加深至 `--sepia-deep: #5E3A1A` |
+| 文章标题 | `--ink: #2C2620` | 近纯黑墨色，不用彩色 |
+| 品牌名 | `--ink: #2C2620` | 同文章标题 |
+| 弱化文字 | `--color-fg-muted: #7A6F62` | 日期、标签、页脚 |
+| 边框 | `--color-border-default: #DCD5C8` | 暖灰色 |
+| 行内代码底色 | `--code-bg: rgba(139,90,43,0.06)` | 暖棕透明度 |
 
-修改颜色时必须保持整体色温一致（色相 30° 左右的暖棕色系），避免冷灰/蓝色系混入。
+默认主题修改颜色时必须保持整体色温一致（色相 30° 左右的暖棕色系），避免冷灰/蓝色系混入。各主题在自身色系内保持一致，主题级换色通过 `[data-theme]` 变量覆盖实现（见下方「主题系统」）。
 
 ## 字体规范
 
@@ -56,11 +56,11 @@ Georgia 默认使用老式数字（old-style figures），数字高度参差不�
 ## 各区域样式速查
 
 ### 导航栏 (navbar)
-- 覆盖 Bootstrap `navbar-dark bg-dark` → 透明背景 + 底部暖色细线
+- 模板使用 Bootstrap `navbar-light`（无背景类），覆盖为透明背景 + 底部暖色细线
 - 品牌名用衬线体、粗体、黑色
-- 导航链接 `#57606a`，hover 加深 + 暖灰底色
-- 下拉菜单：暖白底 `#F5F1EC`、暖色边框、淡阴影
-- 汉堡按钮需自定义 SVG 图标颜色（覆盖 Bootstrap 默认白色）
+- 导航链接 `--ink-muted`，hover 加深 + 暖色底
+- 汉堡按钮需自定义 SVG 图标颜色（`--toggler-icon`，覆盖 Bootstrap 默认色）
+- 主题切换按钮 `.theme-toggle`：窄屏靠 `margin-left: auto` 紧贴汉堡按钮左侧，桌面端（≥768px）用 `order: 5` 排到导航末尾
 
 ### 文章标题
 - `article header h1`（详情页）、`article header h2`（列表页）
@@ -82,9 +82,18 @@ Georgia 默认使用老式数字（old-style figures），数字高度参差不�
 - `hr` 用暖色边框
 - 链接同正文链接风格
 
+## 主题系统
+
+主题由 `<html data-theme>` 表达：默认主题无属性，永乐主题为 `data-theme="yongle"`。选中状态存于 localStorage 键 `theme`（值为 `yongle` / `default`）。
+
+- 实现：所有颜色收敛为 `:root` CSS 变量；主题差异只在 `css/custom.css` 的 `[data-theme="yongle"]` 块重定义变量，组件规则本身不分主题
+- 防闪烁：`_src/page-template.html` 的 `<head>` 内联脚本在渲染前读 localStorage 恢复 `data-theme`
+- 切换按钮：导航栏 `<button id="theme-toggle">`，文案显示将切换到的主题名（默认 ↔ 永乐），原生 JS 不依赖 jQuery
+- 永乐主题取自《永乐大典》册页：纸面 `#F7F1E3`、朱丝栏 `#B5442D`（链接/强调/标题分隔线）、松烟墨 `#2B2620`、暖褐灰 `#6E5F4E`；body 不铺 `bg.png` 纹理，用干净纸色
+
 ## 修改检查清单
 
-改完样式后验证：
+改完样式后验证（默认主题与永乐主题各验一遍）：
 1. 首页文章标题是否保持黑色（不被链接色覆盖）
 2. 代码块背景是否与页面背景色温一致
 3. 导航栏链接、下拉菜单是否正常显示

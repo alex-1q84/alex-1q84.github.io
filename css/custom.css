@@ -1,6 +1,6 @@
 /* custom.css */
 body {
-    background-color: #F2F3ED;
+    background-color: var(--paper);
     background-image: url('bg.png');
     background-repeat: repeat;
 }
@@ -21,6 +21,17 @@ body {
     --sepia:          #8B5A2B;   /* link accent — aged ink */
     --sepia-deep:     #5E3A1A;   /* link hover */
     --rule:           #DCD5C8;   /* hairline rules */
+    /* Accent derivatives — translucent layers tinted by the accent hue */
+    --title-rule:     var(--rule);
+    --code-bg:        rgba(139, 90, 43, 0.06);
+    --code-border:    rgba(139, 90, 43, 0.12);
+    --quote-bg:       rgba(139, 90, 43, 0.03);
+    --link-underline: rgba(139, 90, 43, 0.28);
+    --tag-bg:         rgba(139, 90, 43, 0.05);
+    --tag-bg-hover:   rgba(139, 90, 43, 0.12);
+    --hover-tint:     rgba(139, 90, 43, 0.06);
+    --toggler-border: rgba(165, 158, 145, 0.3);
+    --toggler-icon:   url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2887,96,106,0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     /* Legacy aliases (retained for existing rules) */
     --color-neutral-muted: rgba(139, 90, 43, 0.07);
     --color-canvas-subtle: #ECE6D9;
@@ -30,6 +41,40 @@ body {
     /* Book serif — Hermann Zapf's book faces with graceful fallbacks */
     --font-book: "Iowan Old Style", "Palatino Linotype", "URW Palladio L",
                  Palatino, "Book Antiqua", Georgia, serif;
+}
+
+/* 永乐 theme — 《永乐大典》册页：暖米黄宣纸、朱丝栏界线、松烟墨文字 */
+[data-theme="yongle"] {
+    --paper:          #F7F1E3;
+    --paper-warm:     #EFE7D3;
+    --ink:            #262019;   /* titles — 浓墨 */
+    --ink-soft:       #2B2620;   /* 正文 — 松烟墨 */
+    --ink-muted:      #6E5F4E;   /* 次要文字 — 暖褐灰 */
+    --sepia:          #B5442D;   /* 朱红 — 链接、强调（呼应朱丝栏） */
+    --sepia-deep:     #8F3220;   /* 链接 hover — 深朱 */
+    --rule:           #E3D6BC;   /* 中性细线 — 纸色加深一档 */
+    /* Accent derivatives */
+    --title-rule:     rgba(181, 68, 45, 0.55);   /* 标题分隔线 — 朱丝栏 */
+    --code-bg:        rgba(181, 68, 45, 0.05);
+    --code-border:    rgba(181, 68, 45, 0.12);
+    --quote-bg:       rgba(181, 68, 45, 0.035);
+    --link-underline: rgba(181, 68, 45, 0.32);
+    --tag-bg:         rgba(181, 68, 45, 0.05);
+    --tag-bg-hover:   rgba(181, 68, 45, 0.12);
+    --hover-tint:     rgba(181, 68, 45, 0.06);
+    --toggler-border: rgba(110, 95, 78, 0.35);
+    --toggler-icon:   url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2843,38,32,0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    /* Legacy aliases */
+    --color-neutral-muted:  rgba(181, 68, 45, 0.07);
+    --color-canvas-subtle:  #EFE7D3;
+    --color-fg-muted:       #6E5F4E;
+    --color-border-default: #D5C29C;
+    --color-border-muted:   #E6DBC2;
+}
+
+/* 册页不留噪点纹理，用干净纸色 */
+[data-theme="yongle"] body {
+    background-image: none;
 }
 
 /*
@@ -69,7 +114,7 @@ article {
     font-weight: 600;
     margin: 0 0 0.8em;
     padding-bottom: 0.3em;
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid var(--title-rule);
 }
 
 #content > h2 { font-size: 1.5rem;  margin: 1.8em 0 0.6em; font-weight: 600; }
@@ -189,8 +234,8 @@ code {
     padding: .12em .35em;
     margin: 0;
     font-size: 85%;
-    background-color: rgba(139, 90, 43, 0.06);
-    border: 1px solid rgba(139, 90, 43, 0.12);
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
     border-radius: 3px;
     font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
 }
@@ -218,7 +263,7 @@ blockquote {
     font-style: italic;
     border-left: .2em solid var(--sepia);
     margin: 0 0 1.2em;
-    background-color: rgba(139, 90, 43, 0.03);
+    background-color: var(--quote-bg);
 }
 
 article img {
@@ -237,7 +282,7 @@ article img {
 #content a {
     color: var(--sepia);
     text-decoration: none;
-    border-bottom: 1px solid rgba(139, 90, 43, 0.28);
+    border-bottom: 1px solid var(--link-underline);
     transition: color .25s ease, border-color .25s ease;
 }
 
@@ -249,7 +294,7 @@ article img {
 article .tags a {
     color: var(--ink-muted);
     border-bottom: none;
-    background-color: rgba(139, 90, 43, 0.05);
+    background-color: var(--tag-bg);
     padding: .12em .55em;
     border-radius: 3px;
     transition: color .25s ease, background-color .25s ease;
@@ -257,7 +302,7 @@ article .tags a {
 
 article .tags a:hover {
     color: var(--sepia-deep);
-    background-color: rgba(139, 90, 43, 0.12);
+    background-color: var(--tag-bg-hover);
 }
 
 footer {
@@ -271,7 +316,7 @@ footer hr {
 footer a[href] {
     color: var(--sepia);
     text-decoration: none;
-    border-bottom: 1px solid rgba(139, 90, 43, 0.28);
+    border-bottom: 1px solid var(--link-underline);
     transition: color .25s ease, border-color .25s ease;
 }
 
@@ -313,16 +358,16 @@ footer a[href]:hover {
 .nav-link:hover,
 .nav-link:focus {
     color: var(--sepia-deep);
-    background-color: rgba(139, 90, 43, 0.06);
+    background-color: var(--hover-tint);
 }
 
 .navbar-toggler {
-    border-color: rgba(165,158,145,0.3);
+    border-color: var(--toggler-border);
     padding: 0.25rem 0.6rem;
 }
 
 .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2887,96,106,0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    background-image: var(--toggler-icon);
 }
 
 /* Flat tag list on homepage — like a book's index entries */
@@ -388,7 +433,7 @@ footer a[href]:hover {
 
 .page-link:hover {
     color: var(--sepia-deep) !important;
-    background-color: rgba(139, 90, 43, 0.06);
+    background-color: var(--hover-tint);
     border-color: var(--color-border-default);
 }
 
@@ -410,4 +455,32 @@ article > footer .page-link:hover {
     background-color: transparent;
     text-decoration: none;
     border-bottom: 1px solid var(--sepia);
+}
+
+/* Theme toggle — 文案显示将切换到的主题名 */
+.theme-toggle {
+    margin-left: auto;
+    padding: 0.25rem 0.6rem;
+    font-family: var(--font-book);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--ink-muted);
+    background-color: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    transition: color .25s ease, border-color .25s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+    color: var(--sepia-deep);
+    border-color: var(--sepia);
+}
+
+/* 桌面端排到折叠导航之后，靠 flex-grow 的 collapse 推到右端 */
+@media (min-width: 768px) {
+    .theme-toggle {
+        order: 5;
+        margin-left: 1rem;
+    }
 }

@@ -19,6 +19,16 @@
     <link rel="stylesheet" type="text/css" href="@|uri-prefix|/css/pygments.css">
     <link rel="stylesheet" type="text/css" href="@|uri-prefix|/css/scribble.css">
     <link rel="stylesheet" type="text/css" href="@|uri-prefix|/css/custom.css">
+    <!-- Theme -->
+    <script>
+    (function(){
+      try{
+        if(localStorage.getItem('theme')==='yongle'){
+          document.documentElement.setAttribute('data-theme','yongle');
+        }
+      }catch(e){}
+    })();
+    </script>
     <!-- Feeds -->
     <link rel="alternate" type="application/atom+xml"
           href="@|atom-feed-uri|" title="Atom Feed">
@@ -34,6 +44,9 @@
       <div class="container">
 
       <a href="@|uri-prefix|/index.html" class="navbar-brand">庭燎之光</a>
+
+      <button id="theme-toggle" class="theme-toggle" type="button"
+              aria-label="切换到永乐主题">永乐</button>
 
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
               data-target="#navbar_collapse" aria-controls="navbar_collapse"
@@ -125,6 +138,26 @@
           el.parentNode.insertBefore(h,el);
           lastYear=y;
         }
+      });
+    })();
+    </script>
+    <script>
+    (function(){
+      var btn=document.getElementById('theme-toggle');
+      if(!btn)return;
+      var root=document.documentElement;
+      function sync(){
+        var yongle=root.getAttribute('data-theme')==='yongle';
+        btn.textContent=yongle?'庭燎':'永乐';
+        btn.setAttribute('aria-label',yongle?'切换到庭燎主题':'切换到永乐主题');
+      }
+      sync();
+      btn.addEventListener('click',function(){
+        var yongle=root.getAttribute('data-theme')==='yongle';
+        if(yongle){root.removeAttribute('data-theme');}
+        else{root.setAttribute('data-theme','yongle');}
+        try{localStorage.setItem('theme',yongle?'default':'yongle');}catch(e){}
+        sync();
       });
     })();
     </script>
