@@ -77,6 +77,59 @@ body {
     background-image: none;
 }
 
+/* 书页式朱丝栏双线（外粗内细）：粗红 3.6px + 细红 1.3px，线色取朱丝栏 #B5442D。
+   手绘质感由 data-URI SVG 内的 feTurbulence+feDisplacementMap 抖动位移产生；
+   粗线叠描一遍（不同 seed、略细、半透明）错位出忽粗忽细的枯笔感，
+   细线半透明呈现老化褪朱。SVG 宽 1200 随容器拉伸，固定 seed 保证渲染一致，
+   不支持滤镜的引擎自然退化为直线。内嵌 data-URI 不新增资源文件。 */
+/* 归零 navbar 自带的左右 1rem 内边距，使 navbar 内 container 与正文主 container
+   同宽同位（窄屏下两者才不会差 32px），内容缩进由 container 自身 15px 内边距提供 */
+[data-theme="yongle"] .navbar {
+    border-bottom: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+[data-theme="yongle"] .navbar > .container {
+    position: relative;
+}
+
+/* 顶线挂在 navbar 内的 .container 上，left/right 抵消其 15px 内边距，
+   长度即容器内容宽，与页脚横线对齐 */
+[data-theme="yongle"] .navbar > .container::after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: -1.2rem;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='14' viewBox='0 0 1200 14'%3e%3cdefs%3e%3cfilter id='a' x='-2%25' y='-60%25' width='104%25' height='220%25'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.012 0.02' numOctaves='2' seed='11' result='n'/%3e%3cfeDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/%3e%3c/filter%3e%3cfilter id='b' x='-2%25' y='-60%25' width='104%25' height='220%25'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.017 0.026' numOctaves='2' seed='5' result='n'/%3e%3cfeDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/%3e%3c/filter%3e%3cfilter id='c' x='-2%25' y='-60%25' width='104%25' height='220%25'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.014 0.022' numOctaves='2' seed='19' result='n'/%3e%3cfeDisplacementMap in='SourceGraphic' in2='n' scale='6' xChannelSelector='R' yChannelSelector='G'/%3e%3c/filter%3e%3c/defs%3e%3cg fill='%23B5442D'%3e%3crect filter='url(%23a)' x='0' y='3.2' width='1200' height='3.6'/%3e%3crect filter='url(%23c)' x='0' y='3.8' width='1200' height='2.6' opacity='0.55'/%3e%3crect filter='url(%23b)' x='0' y='10.3' width='1200' height='1.3' opacity='0.62'/%3e%3c/g%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    pointer-events: none;
+}
+
+/* 页脚横线：同一手绘双线，细线在上、粗线在下（外粗内细） */
+[data-theme="yongle"] footer hr {
+    border: none;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='14' viewBox='0 0 1200 14'%3e%3cdefs%3e%3cfilter id='a' x='-2%25' y='-60%25' width='104%25' height='220%25'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.012 0.02' numOctaves='2' seed='7' result='n'/%3e%3cfeDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/%3e%3c/filter%3e%3cfilter id='b' x='-2%25' y='-60%25' width='104%25' height='220%25'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.017 0.026' numOctaves='2' seed='3' result='n'/%3e%3cfeDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/%3e%3c/filter%3e%3cfilter id='c' x='-2%25' y='-60%25' width='104%25' height='220%25'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.014 0.022' numOctaves='2' seed='23' result='n'/%3e%3cfeDisplacementMap in='SourceGraphic' in2='n' scale='6' xChannelSelector='R' yChannelSelector='G'/%3e%3c/filter%3e%3c/defs%3e%3cg fill='%23B5442D'%3e%3crect filter='url(%23a)' x='0' y='2.4' width='1200' height='1.3' opacity='0.62'/%3e%3crect filter='url(%23b)' x='0' y='7.2' width='1200' height='3.6'/%3e%3crect filter='url(%23c)' x='0' y='7.6' width='1200' height='2.6' opacity='0.55'/%3e%3c/g%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* 正文与 tag 的分隔线延伸到容器内容宽，与页脚横线对齐（负边距恰被 col 的 15px 内边距吸收） */
+[data-theme="yongle"] .tag-list {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+/* 品牌名用手写楷体（册页台阁体书风），栈尾回退书衬线 */
+[data-theme="yongle"] .navbar-brand {
+    font-family: "Kaiti SC", "STKaiti", "KaiTi", "楷体", "DFKai-SB", "BiauKai",
+                 "AR PL UKai CN", "AR PL KaitiM GB", var(--font-book);
+}
+
 /*
 .h3, h3 {
   border-bottom: 1px solid gray;
