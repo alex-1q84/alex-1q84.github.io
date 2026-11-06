@@ -7,7 +7,11 @@
   (-> any)
   (current-scheme/host "http://alex-1q84.github.io")
   (current-title "庭燎之光")
-  (current-author "Alex-1Q84"))
+  (current-author "Alex-1Q84")
+  ;; watch 模式（make preview）：_src 内任何文件变化（含 page-template.html
+  ;; 模板）都触发重建；轮询周期 2 秒，保存后约 2~3 秒可见
+  (current-rebuild? (lambda (path change-type) #t))
+  (current-watch-rate 2))
 
 ;; Called once per post and non-post page, on the contents.
 (define/contract (enhance-body xs)

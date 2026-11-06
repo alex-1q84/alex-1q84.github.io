@@ -15,7 +15,7 @@ Alex-1Q84 的个人技术博客，使用 Racket 语言的 **Frog** 静态站点�
 ```bash
 make deps            # 安装依赖（frog 包 + pygments）
 make build           # 构建静态页面
-make preview         # 构建并启动本地预览服务器
+make preview         # 构建并启动本地预览（http://localhost:3000，watch 自动重建）
 make clean           # 清理构建产物
 ./postmd.sh <name>   # 新建带日期前缀的博文
 ./publish.sh         # 手动发布：合并 master 到 gh-pages 并构建推送
@@ -41,6 +41,8 @@ make clean           # 清理构建产物
 
 ## 注意事项
 
+- `make preview`（watch 模式）只监视 `_src/`，轮询周期 2 秒：保存博文或模板后约 2~3 秒自动重建，然后手动刷新浏览器即可；改 `css/`、`js/` 等静态资源无需重建，刷新即生效。watch 终端日志因 stdout 缓冲基本不可见，属正常现象，以页面效果为准
+- 删除博文后 watch 重建不会清理对应产物页，本地残留可 `make clean` 清掉；线上部署是 CI 全量构建，不受影响
 - `css/custom.css` 是唯一应编辑的样式文件，其余 CSS/JS 为第三方库
 - `publish.sh` 中 `git reset --hard` + `git clean -dqxf` 会清空工作区，执行前确认无未提交改动
 - Shell 脚本中 `emacs` 调用是写死的，非 emacs 用户需替换
