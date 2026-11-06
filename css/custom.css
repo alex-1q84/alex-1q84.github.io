@@ -130,6 +130,12 @@ body {
                  "AR PL UKai CN", "AR PL KaitiM GB", var(--font-book);
 }
 
+/* 标题与顶部双线留出一段呼吸空间（首页列表有自己的节奏，不在此列） */
+[data-theme="yongle"] #content > h1,
+[data-theme="yongle"] article header h1 {
+    margin-top: 2rem;
+}
+
 /*
 .h3, h3 {
   border-bottom: 1px solid gray;
