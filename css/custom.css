@@ -136,6 +136,19 @@ body {
     margin-top: 2rem;
 }
 
+/* 纸书排印：正文加大字号、疏朗行距与微字距，阅读如展卷 */
+[data-theme="yongle"] article,
+[data-theme="yongle"] #content {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+}
+
+/* 等宽代码不吃正文字距，保持字符对齐 */
+[data-theme="yongle"] :is(code, pre, kbd, samp) {
+    letter-spacing: normal;
+}
+
 /*
 .h3, h3 {
   border-bottom: 1px solid gray;
