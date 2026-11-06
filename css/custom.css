@@ -45,14 +45,14 @@ body {
 
 /* 永乐 theme — 《永乐大典》册页：暖米黄宣纸、朱丝栏界线、松烟墨文字 */
 [data-theme="yongle"] {
-    --paper:          #F7F1E3;
-    --paper-warm:     #EFE7D3;
+    --paper:          #DFDAC9;   /* 温润陈化宣纸色 — 册页照片亮区采样 #DFDDCE 校白平衡后取值 */
+    --paper-warm:     #D7D2B5;   /* 纸色深一档 — 代码块底 */
     --ink:            #262019;   /* titles — 浓墨 */
     --ink-soft:       #2B2620;   /* 正文 — 松烟墨 */
     --ink-muted:      #6E5F4E;   /* 次要文字 — 暖褐灰 */
     --sepia:          #B5442D;   /* 朱红 — 链接、强调（呼应朱丝栏） */
     --sepia-deep:     #8F3220;   /* 链接 hover — 深朱 */
-    --rule:           #E3D6BC;   /* 中性细线 — 纸色加深一档 */
+    --rule:           #D3CCAA;   /* 中性细线 — 纸色加深一档 */
     /* Accent derivatives */
     --title-rule:     rgba(181, 68, 45, 0.55);   /* 标题分隔线 — 朱丝栏 */
     --code-bg:        rgba(181, 68, 45, 0.05);
@@ -66,10 +66,10 @@ body {
     --toggler-icon:   url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2843,38,32,0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     /* Legacy aliases */
     --color-neutral-muted:  rgba(181, 68, 45, 0.07);
-    --color-canvas-subtle:  #EFE7D3;
+    --color-canvas-subtle:  #D7D2B5;
     --color-fg-muted:       #6E5F4E;
-    --color-border-default: #D5C29C;
-    --color-border-muted:   #E6DBC2;
+    --color-border-default: #C3B88A;
+    --color-border-muted:   #D6D1B0;
 }
 
 /* 册页不留噪点纹理，用干净纸色 */
