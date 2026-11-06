@@ -34,8 +34,18 @@
           href="@|atom-feed-uri|" title="Atom Feed">
     <link rel="alternate" type="application/rss+xml"
           href="@|rss-feed-uri|" title="RSS Feed">
-    <!-- JS -->
-    @google-universal-analytics["UA-xxxxx"]
+    <!-- Analytics: 百度统计，ID 从 tongji.baidu.com 添加站点后获取；保持 CHANGE_ME 则不注入任何脚本 -->
+    @(define baidu-tongji-id "CHANGE_ME")
+    @(when (not (equal? baidu-tongji-id "CHANGE_ME"))
+      @list{<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?@|baidu-tongji-id|";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>})
   </head>
   <body>
 
