@@ -408,7 +408,7 @@ footer a[href]:hover {
 .navbar-brand {
     font-family: var(--font-book);
     font-weight: 600;
-    font-size: 1.35rem;
+    font-size: 1.6rem;
     color: var(--ink);
     letter-spacing: -0.01em;
     font-variant-numeric: lining-nums;
