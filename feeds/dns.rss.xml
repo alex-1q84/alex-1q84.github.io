@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<rss version="2.0">
+ <channel>
+  <title>庭燎之光: Posts tagged 'dns'</title>
+  <description>庭燎之光: Posts tagged 'dns'</description>
+  <link>http://alex-1q84.github.io/tags/dns.html</link>
+  <lastBuildDate>Fri, 05 Jun 2026 10:04:29 UT</lastBuildDate>
+  <pubDate>Fri, 05 Jun 2026 10:04:29 UT</pubDate>
+  <ttl>1800</ttl>
+  <item>
+   <title>一种在域名中嵌入 IP 的通配符 DNS 解析服务</title>
+   <link>http://alex-1q84.github.io/2026/06/%E4%B8%80%E7%A7%8D%E5%9C%A8%E5%9F%9F%E5%90%8D%E4%B8%AD%E5%B5%8C%E5%85%A5-ip-%E7%9A%84%E9%80%9A%E9%85%8D%E7%AC%A6-dns-%E8%A7%A3%E6%9E%90%E6%9C%8D%E5%8A%A1.html?utm_source=dns&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-alex-1q84-github-io:-2026-06-E4-B8-80-E7-A7-8D-E5-9C-A8-E5-9F-9F-E5-90-8D-E4-B8-AD-E5-B5-8C-E5-85-A5-ip-E7-9A-84-E9-80-9A-E9-85-8D-E7-AC-A6-dns-E8-A7-A3-E6-9E-90-E6-9C-8D-E5-8A-A1-html</guid>
+   <pubDate>Fri, 05 Jun 2026 10:04:29 UT</pubDate>
+   <author>Alex-1Q84</author>
+   <description>
+&lt;p&gt;今天在内网看到有人发出一个文档链接，url 中的主机地址看起来很奇怪 http://ngbilling.docs.10.30.12.23.nip.io ，其中包含了 IP ，我就简单搜索了一下，发现原来有一种叫做通配符 DNS 解析服务的东西可以通过在域名中嵌入 IP 地址从而让这个域名解析到对应 IP 地址。下面是它的简单介绍，并且还有其他的类似服务&lt;/p&gt;&lt;a href="http://alex-1q84.github.io/2026/06/%E4%B8%80%E7%A7%8D%E5%9C%A8%E5%9F%9F%E5%90%8D%E4%B8%AD%E5%B5%8C%E5%85%A5-ip-%E7%9A%84%E9%80%9A%E9%85%8D%E7%AC%A6-dns-%E8%A7%A3%E6%9E%90%E6%9C%8D%E5%8A%A1.html?utm_source=dns&amp;amp;utm_medium=RSS"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</description></item></channel></rss>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+ <title type="text">庭燎之光: Posts tagged 'racket'</title>
+ <link rel="self" href="http://alex-1q84.github.io/feeds/racket.atom.xml" />
+ <link href="http://alex-1q84.github.io/tags/racket.html" />
+ <id>urn:http-alex-1q84-github-io:-tags-racket-html</id>
+ <updated>2022-06-17T14:31:39Z</updated>
+ <entry>
+  <title type="text">config racket/rsvg lib to use librsvg via FFI in Racket</title>
+  <link rel="alternate" href="http://alex-1q84.github.io/2022/06/config-racket-rsvg-lib-to-use-librsvg-via-ffi-in-racket.html?utm_source=racket&amp;utm_medium=Atom" />
+  <id>urn:http-alex-1q84-github-io:-2022-06-config-racket-rsvg-lib-to-use-librsvg-via-ffi-in-racket-html</id>
+  <published>2022-06-17T14:31:39Z</published>
+  <updated>2022-06-17T14:31:39Z</updated>
+  <author>
+   <name>Alex-1Q84</name></author>
+  <content type="html">
+&lt;p&gt;I have a little Racket program that dependences &lt;code&gt;racket/rsvg&lt;/code&gt;, so I install the &lt;code&gt;racket/rsvg&lt;/code&gt; lib on my macOS using under command&lt;/p&gt;
+
+&lt;div class="brush: bash"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;raco&lt;span class="w"&gt; &lt;/span&gt;pkg&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;-u&lt;span class="w"&gt; &lt;/span&gt;rsvg
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;but when I then run the program, it produces some error messages&lt;/p&gt;
+
+&lt;blockquote&gt;
+ &lt;p&gt;ffi-lib: couldn&amp;rsquo;t open &amp;ldquo;librsvg&amp;ndash;2.2.dylib&amp;rdquo; (dlopen(librsvg&amp;ndash;2.2.dylib, 6): image not found)&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;after check the racket&amp;rsquo;s &lt;code&gt;ffi-lib&lt;/code&gt; doc, I fixed it, the follow is How I fix the problem. originally posted on &lt;a href="https://github.com/takikawa/racket-rsvg/issues/7#issuecomment-729429563"&gt;github&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I have the same problem, and when I checked the method &lt;code&gt;ffi-lib&lt;/code&gt; &lt;a href="https://docs.racket-lang.org/foreign/Loading_Foreign_Libraries.html#%28def._%28%28lib._ffi%2Funsafe..rkt%29._ffi-lib%29%29"&gt;doc&lt;/a&gt;, it explains how racket finds ffi lib path&lt;/p&gt;
+
+&lt;blockquote&gt;
+ &lt;p&gt;If &lt;em&gt;path&lt;/em&gt; is not an absolute path, look in each directory reported by &lt;code&gt;get-lib-dirs&lt;/code&gt;; the default list is the result of &lt;code&gt;(get-lib-search-dirs)&lt;/code&gt;.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;as the racket document describes, we can use the code under here to get the current lib search dirs&lt;/p&gt;
+
+&lt;div class="brush: racket"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit"&gt;require&lt;/a&gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;setup/dirs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;&lt;a href="http://docs.racket-lang.org/raco/dirs.html#(def._((lib._setup/dirs..rkt)._get-lib-search-dirs))" style="color: inherit"&gt;get-lib-search-dirs&lt;/a&gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;on my computer the result is &lt;code&gt;'(#&amp;lt;path:/Users/mywo/Library/Racket/7.9/lib&amp;gt; #&amp;lt;path:/usr/local/opt/Racket/lib&amp;gt;)&lt;/code&gt;. and my librsvg lib path is &lt;code&gt;/usr/local/Cellar/librsvg/2.48.8/lib/librsvg-2.2.dylib&lt;/code&gt;, which can find with &lt;code&gt;homebrew&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class="brush: bash"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;list&lt;span class="w"&gt; &lt;/span&gt;librsvg
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;if you don&amp;rsquo;t have librsvg in you system, you can install it using Homebrew&lt;/p&gt;
+
+&lt;div class="brush: bash"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;brew&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;librsvg
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;the racket document shows we can config lib search dirs, follow the &lt;a href="https://docs.racket-lang.org/raco/config-file.html"&gt;Installation Configuration and Search Paths&lt;/a&gt; I changed my racket config file &lt;code&gt;/Applications/Racket v7.9/etc/config.rktd&lt;/code&gt;, add the &lt;code&gt;'lib-search-dirs'&lt;/code&gt; setting to it, and my program running correctly.&lt;/p&gt;
+
+&lt;p&gt;here is my &lt;code&gt;config.rktd&lt;/code&gt; content&lt;/p&gt;
+
+&lt;div class="brush: racket"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;#hash&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="ss"&gt;build-stamp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;""&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;catalogs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"https://download.racket-lang.org/releases/7.9/catalog/"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;#f&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;doc-search-url&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"https://download.racket-lang.org/releases/7.9/doc/local-redirect/index.html"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;lib-search-dirs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"/usr/local/opt/librsvg/lib/"&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;#f&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h4 id="racket-ffi-使用相关说明"&gt;racket ffi 使用相关说明&lt;/h4&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;http://prl.ccs.neu.edu/blog/2016/06/27/tutorial-using-racket-s-ffi/&lt;/li&gt;
+ &lt;li&gt;http://prl.ccs.neu.edu/blog/2016/06/29/tutorial-racket-ffi-part&amp;ndash;2/&lt;/li&gt;
+ &lt;li&gt;http://prl.ccs.neu.edu/blog/2016/07/11/tutorial-racket-ffi-part&amp;ndash;3/&lt;/li&gt;&lt;/ul&gt;</content></entry>
+ <entry>
+  <title type="text">学习 Racket 语言</title>
+  <link rel="alternate" href="http://alex-1q84.github.io/2020/07/%E5%AD%A6%E4%B9%A0-racket-%E8%AF%AD%E8%A8%80.html?utm_source=racket&amp;utm_medium=Atom" />
+  <id>urn:http-alex-1q84-github-io:-2020-07-E5-AD-A6-E4-B9-A0-racket-E8-AF-AD-E8-A8-80-html</id>
+  <published>2020-07-06T21:41:11Z</published>
+  <updated>2020-07-06T21:41:11Z</updated>
+  <author>
+   <name>Alex-1Q84</name></author>
+  <content type="html">
+&lt;h4 id="1-最重要的事情是练习练习练习"&gt;1. 最重要的事情是练习练习练习&lt;/h4&gt;
+
+&lt;p&gt;一开始可以跟着 &lt;a href="https://acl.readthedocs.io/en/latest/zhCN/ch7-cn.html"&gt;ANSI Common Lisp&lt;/a&gt; 这本书做练习，前七章非常好，内容基本可以套用到 racket 上。已经有热心人翻译成中文了。这是 Common Lisp 的&lt;a href="http://clhs.lisp.se/Body/06_aac.htm"&gt;文档&lt;/a&gt;，对照阅读出现语法理解问题时可以使用。&lt;/p&gt;
+
+&lt;h4 id="2-更多练习"&gt;2. 更多练习&lt;/h4&gt;
+
+&lt;p&gt;可以使用 &lt;a href="https://www.realmofracket.com/"&gt;Realm of Racket&lt;/a&gt; 这本书，跟着书抄代码，做做 challenges 。这本书跟 &lt;a href="https://htdp.org/2019-02-24/index.html"&gt;How to Design Programs, Second Edition&lt;/a&gt; （后面简称 2htdp）这本书有很大关系，许多例子是基于 2htdp 所提供的工具包实现的，学习的时候可以顺便看看 2htdp 的工具包文档说明，DrRacket 自带了这部分说明文档，练习时可以方便地查看。Realm of Racket 这本书是收费的，质量非常不错，虽然对于国内来说价格略贵，建议用起来感动的话还是用实际行动支持下作者。&lt;/p&gt;
+
+&lt;h4 id="3-进阶"&gt;3. 进阶&lt;/h4&gt;
+
+&lt;p&gt;跟着 &lt;a href="https://beautifulracket.com/stacker/the-reader.html"&gt;Beautiful Racket&lt;/a&gt; 学习 racket 强大的宏系统。&lt;/p&gt;
+
+&lt;h4 id="4-有经验的程序员"&gt;4. 有经验的程序员&lt;/h4&gt;
+
+&lt;p&gt;对于有经验的程序员，可以从 racket 自带的 《More: Systems Programming with Racket》入手，在 racket 自带文档中搜索即可看到。跟着这个教程抄一遍代码是个很好的路子，可以作为使用 racket 快速上手做一些实际的事情的入口，抄完这个代码可以通过这个页面的链接做一些扩展了解。&lt;/p&gt;
+
+&lt;h4 id="5-其他"&gt;5. 其他&lt;/h4&gt;
+
+&lt;p&gt;另找到一本 racket 入门练习书 &lt;a href="http://picturingprograms.com/"&gt;Picturing Programs: an Introduction to Computer Programming&lt;/a&gt; ，和 2htdp 也有莫大渊源，这本书可以免费获取，或许可以作为 Realm of Racket 的替代品（不负责任），合适的话也请赞助作者。&lt;/p&gt;
+
+&lt;p&gt;附上 Racket 和 Common Lisp 的语法介绍，练习时可以对照感受下异同 &lt;a href="https://learnxinyminutes.com/docs/zh-cn/racket-cn/"&gt;Racket&lt;/a&gt; &lt;a href="https://learnxinyminutes.com/docs/common-lisp/"&gt;Common Lisp&lt;/a&gt;&lt;/p&gt;&lt;a href="http://alex-1q84.github.io/2020/07/%E5%AD%A6%E4%B9%A0-racket-%E8%AF%AD%E8%A8%80.html?utm_source=racket&amp;amp;utm_medium=Atom"&gt;&lt;em&gt;More&amp;hellip;&lt;/em&gt;&lt;/a&gt;</content></entry></feed>

@@ -1,0 +1,558 @@
+/* custom.css */
+body {
+    background-color: var(--paper);
+    background-image: url('bg.png');
+    background-repeat: repeat;
+}
+
+@media (min-width: 1200px) {
+    .container{
+        max-width: 830px;
+    }
+}
+
+:root{
+    /* Paper-book palette — warm ink on cream paper */
+    --paper:          #F2F3ED;
+    --paper-warm:     #ECE6D9;
+    --ink:            #2C2620;   /* titles — fresh letterpress ink */
+    --ink-soft:       #4A4036;   /* body / secondary */
+    --ink-muted:      #7A6F62;   /* labels, dates, marginalia */
+    --sepia:          #8B5A2B;   /* link accent — aged ink */
+    --sepia-deep:     #5E3A1A;   /* link hover */
+    --rule:           #DCD5C8;   /* hairline rules */
+    /* Accent derivatives — translucent layers tinted by the accent hue */
+    --title-rule:     var(--rule);
+    --code-bg:        rgba(139, 90, 43, 0.06);
+    --code-border:    rgba(139, 90, 43, 0.12);
+    --quote-bg:       rgba(139, 90, 43, 0.03);
+    --link-underline: rgba(139, 90, 43, 0.28);
+    --tag-bg:         rgba(139, 90, 43, 0.05);
+    --tag-bg-hover:   rgba(139, 90, 43, 0.12);
+    --hover-tint:     rgba(139, 90, 43, 0.06);
+    --toggler-border: rgba(165, 158, 145, 0.3);
+    --toggler-icon:   url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2887,96,106,0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    /* Legacy aliases (retained for existing rules) */
+    --color-neutral-muted: rgba(139, 90, 43, 0.07);
+    --color-canvas-subtle: #ECE6D9;
+    --color-fg-muted:      #7A6F62;
+    --color-border-default: #DCD5C8;
+    --color-border-muted:   #E0D9CC;
+    /* Book serif — Hermann Zapf's book faces with graceful fallbacks */
+    --font-book: "Iowan Old Style", "Palatino Linotype", "URW Palladio L",
+                 Palatino, "Book Antiqua", Georgia, serif;
+}
+
+/* 永乐 theme — 《永乐大典》册页：暖米黄宣纸、朱丝栏界线、松烟墨文字 */
+[data-theme="yongle"] {
+    --paper:          #DFDAC9;   /* 温润陈化宣纸色 — 册页照片亮区采样 #DFDDCE 校白平衡后取值 */
+    --paper-warm:     #D7D2B5;   /* 纸色深一档 — 代码块底 */
+    --ink:            #262019;   /* titles — 浓墨 */
+    --ink-soft:       #2B2620;   /* 正文 — 松烟墨 */
+    --ink-muted:      #6E5F4E;   /* 次要文字 — 暖褐灰 */
+    --sepia:          #B5442D;   /* 朱红 — 链接、强调（呼应朱丝栏） */
+    --sepia-deep:     #8F3220;   /* 链接 hover — 深朱 */
+    --rule:           #D3CCAA;   /* 中性细线 — 纸色加深一档 */
+    /* Accent derivatives */
+    --title-rule:     rgba(181, 68, 45, 0.55);   /* 标题分隔线 — 朱丝栏 */
+    --code-bg:        rgba(181, 68, 45, 0.05);
+    --code-border:    rgba(181, 68, 45, 0.12);
+    --quote-bg:       rgba(181, 68, 45, 0.035);
+    --link-underline: rgba(181, 68, 45, 0.32);
+    --tag-bg:         rgba(181, 68, 45, 0.05);
+    --tag-bg-hover:   rgba(181, 68, 45, 0.12);
+    --hover-tint:     rgba(181, 68, 45, 0.06);
+    --toggler-border: rgba(110, 95, 78, 0.35);
+    --toggler-icon:   url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2843,38,32,0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    /* Legacy aliases */
+    --color-neutral-muted:  rgba(181, 68, 45, 0.07);
+    --color-canvas-subtle:  #D7D2B5;
+    --color-fg-muted:       #6E5F4E;
+    --color-border-default: #C3B88A;
+    --color-border-muted:   #D6D1B0;
+}
+
+/* 册页不留噪点纹理，用干净纸色 */
+[data-theme="yongle"] body {
+    background-image: none;
+}
+
+/* 书页式朱丝栏双线（外粗内细）：粗红 3.6px + 细红 1.3px，线色取朱丝栏 #B5442D。
+   手绘质感由 data-URI SVG 内的 feTurbulence+feDisplacementMap 抖动位移产生；
+   粗线叠描一遍（不同 seed、略细、半透明）错位出忽粗忽细的枯笔感，
+   细线半透明呈现老化褪朱。SVG 宽 1200 随容器拉伸，固定 seed 保证渲染一致，
+   不支持滤镜的引擎自然退化为直线。内嵌 data-URI 不新增资源文件。 */
+/* 归零 navbar 自带的左右 1rem 内边距，使 navbar 内 container 与正文主 container
+   同宽同位（窄屏下两者才不会差 32px），内容缩进由 container 自身 15px 内边距提供 */
+[data-theme="yongle"] .navbar {
+    border-bottom: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+[data-theme="yongle"] .navbar > .container {
+    position: relative;
+}
+
+/* 顶线挂在 navbar 内的 .container 上，left/right 抵消其 15px 内边距，
+   长度即容器内容宽，与页脚横线对齐 */
+[data-theme="yongle"] .navbar > .container::after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: -1.2rem;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='14' viewBox='0 0 1200 14'%3e%3cdefs%3e%3cfilter id='a' x='-2%25' y='-60%25' width='104%25' height='220%25'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.012 0.02' numOctaves='2' seed='11' result='n'/%3e%3cfeDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/%3e%3c/filter%3e%3cfilter id='b' x='-2%25' y='-60%25' width='104%25' height='220%25'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.017 0.026' numOctaves='2' seed='5' result='n'/%3e%3cfeDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/%3e%3c/filter%3e%3cfilter id='c' x='-2%25' y='-60%25' width='104%25' height='220%25'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.014 0.022' numOctaves='2' seed='19' result='n'/%3e%3cfeDisplacementMap in='SourceGraphic' in2='n' scale='6' xChannelSelector='R' yChannelSelector='G'/%3e%3c/filter%3e%3c/defs%3e%3cg fill='%23B5442D'%3e%3crect filter='url(%23a)' x='0' y='3.2' width='1200' height='3.6'/%3e%3crect filter='url(%23c)' x='0' y='3.8' width='1200' height='2.6' opacity='0.55'/%3e%3crect filter='url(%23b)' x='0' y='10.3' width='1200' height='1.3' opacity='0.62'/%3e%3c/g%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    pointer-events: none;
+}
+
+/* 页脚横线：同一手绘双线，细线在上、粗线在下（外粗内细） */
+[data-theme="yongle"] footer hr {
+    border: none;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='14' viewBox='0 0 1200 14'%3e%3cdefs%3e%3cfilter id='a' x='-2%25' y='-60%25' width='104%25' height='220%25'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.012 0.02' numOctaves='2' seed='7' result='n'/%3e%3cfeDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/%3e%3c/filter%3e%3cfilter id='b' x='-2%25' y='-60%25' width='104%25' height='220%25'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.017 0.026' numOctaves='2' seed='3' result='n'/%3e%3cfeDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/%3e%3c/filter%3e%3cfilter id='c' x='-2%25' y='-60%25' width='104%25' height='220%25'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.014 0.022' numOctaves='2' seed='23' result='n'/%3e%3cfeDisplacementMap in='SourceGraphic' in2='n' scale='6' xChannelSelector='R' yChannelSelector='G'/%3e%3c/filter%3e%3c/defs%3e%3cg fill='%23B5442D'%3e%3crect filter='url(%23a)' x='0' y='2.4' width='1200' height='1.3' opacity='0.62'/%3e%3crect filter='url(%23b)' x='0' y='7.2' width='1200' height='3.6'/%3e%3crect filter='url(%23c)' x='0' y='7.6' width='1200' height='2.6' opacity='0.55'/%3e%3c/g%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* 正文与 tag 的分隔线延伸到容器内容宽，与页脚横线对齐（负边距恰被 col 的 15px 内边距吸收） */
+[data-theme="yongle"] .tag-list {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+/* 品牌名用手写楷体（册页台阁体书风），栈尾回退书衬线 */
+[data-theme="yongle"] .navbar-brand {
+    font-family: "Kaiti SC", "STKaiti", "KaiTi", "楷体", "DFKai-SB", "BiauKai",
+                 "AR PL UKai CN", "AR PL KaitiM GB", var(--font-book);
+}
+
+/* 标题与顶部双线留出一段呼吸空间（首页列表有自己的节奏，不在此列） */
+[data-theme="yongle"] #content > h1,
+[data-theme="yongle"] article header h1 {
+    margin-top: 2rem;
+}
+
+/* 纸书排印：正文加大字号、疏朗行距与微字距，阅读如展卷 */
+[data-theme="yongle"] article,
+[data-theme="yongle"] #content {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+}
+
+/* 等宽代码不吃正文字距，保持字符对齐 */
+[data-theme="yongle"] :is(code, pre, kbd, samp) {
+    letter-spacing: normal;
+}
+
+/*
+.h3, h3 {
+  border-bottom: 1px solid gray;
+}
+*/
+
+article {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2em;
+    margin-bottom: 2em;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    line-height: 1.75;
+}
+
+/* Content area — shared book typography for non-article pages (About, tags) */
+#content {
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    line-height: 1.75;
+}
+
+#content > h1,
+#content > h2,
+#content > h3,
+#content > h4,
+#content > h5 {
+    font-family: var(--font-book);
+    color: var(--ink);
+    line-height: 1.3;
+}
+
+#content > h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0 0 0.8em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--title-rule);
+}
+
+#content > h2 { font-size: 1.5rem;  margin: 1.8em 0 0.6em; font-weight: 600; }
+#content > h3 { font-size: 1.25rem; margin: 1.6em 0 0.5em; font-weight: 600; }
+
+#content > p {
+    margin-bottom: 1.1em;
+    hyphens: auto;
+}
+
+article header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+}
+
+article header h1 + .date-and-tags,
+article .date-and-tags {
+    font-family: var(--font-book);
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 0.2rem;
+}
+
+article .authors {
+    color: var(--ink-muted);
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Article body — book typography */
+article p {
+    margin-bottom: 1.1em;
+    hyphens: auto;
+}
+
+article h2, article h3, article h4, article h5 {
+    font-family: var(--font-book);
+    color: var(--ink);
+    line-height: 1.3;
+}
+
+article h2 { font-size: 1.5rem;  margin: 1.8em 0 0.6em; font-weight: 600; }
+article h3 { font-size: 1.25rem; margin: 1.6em 0 0.5em; font-weight: 600; }
+article h4 {
+    padding-bottom: .25em;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--rule);
+    margin-top: 1.5em;
+    margin-bottom: 0.6em;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--ink);
+}
+
+article ul, article ol {
+    margin-bottom: 1.1em;
+    padding-left: 1.6em;
+}
+
+article li {
+    margin-bottom: 0.35em;
+}
+
+/* Year-grouped post list on index — acts as a book's chapter divider */
+.year-header {
+    font-family: var(--font-book);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-top: 2.2rem;
+    margin-bottom: 0.4rem;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    font-feature-settings: "lnum" 1, "kern" 1;
+    font-variant-numeric: lining-nums;
+}
+
+.year-header:first-child {
+    margin-top: 0;
+}
+
+.post-item {
+    padding: 0.3rem 0;
+    line-height: 1.5;
+}
+
+.post-item .post-title {
+    font-family: var(--font-book);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: none;
+    transition: color .25s ease;
+}
+
+.post-item .post-title:hover {
+    color: var(--sepia);
+    text-decoration: none;
+    border-bottom: 1px solid var(--sepia);
+}
+
+#content article header h2 a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: none;
+}
+
+#content article header h2 a:hover {
+    text-decoration: none;
+    color: var(--sepia);
+    border-bottom: 1px solid var(--sepia);
+}
+
+code {
+    color: var(--ink);
+    padding: .12em .35em;
+    margin: 0;
+    font-size: 85%;
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 3px;
+    font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+}
+
+/* When highlighted code blocks are too wide, they wrap. Resulting in the */
+/* line numbers column's rows not lining up with the code rows. Prevent */
+/* wrapping. */
+pre {
+    white-space: pre;
+    width: inherit;
+    padding: 20px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.5;
+    background-color: var(--color-canvas-subtle);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    margin-bottom: 1.2em;
+    margin-left: 0;
+}
+
+blockquote {
+    padding: 0.2em 1.2em;
+    color: var(--ink-muted);
+    font-style: italic;
+    border-left: .2em solid var(--sepia);
+    margin: 0 0 1.2em;
+    background-color: var(--quote-bg);
+}
+
+article img {
+  /* Make sure that images within blog articles never take more width
+     than the article width; `height: auto` ensures the height is also
+     resized proportionally.
+
+     This is useful given that Markdown itself gives you little
+     control over image resizing, and in particular no way of achieving
+     this "best fit" behavior.
+ */
+  max-width: 100%;
+  height: auto;
+}
+
+#content a {
+    color: var(--sepia);
+    text-decoration: none;
+    border-bottom: 1px solid var(--link-underline);
+    transition: color .25s ease, border-color .25s ease;
+}
+
+#content a:hover {
+    color: var(--sepia-deep);
+    border-bottom-color: var(--sepia-deep);
+}
+
+article .tags a {
+    color: var(--ink-muted);
+    border-bottom: none;
+    background-color: var(--tag-bg);
+    padding: .12em .55em;
+    border-radius: 3px;
+    transition: color .25s ease, background-color .25s ease;
+}
+
+article .tags a:hover {
+    color: var(--sepia-deep);
+    background-color: var(--tag-bg-hover);
+}
+
+footer {
+    color: var(--color-fg-muted);
+}
+
+footer hr {
+    border-color: var(--color-border-muted);
+}
+
+footer a[href] {
+    color: var(--sepia);
+    text-decoration: none;
+    border-bottom: 1px solid var(--link-underline);
+    transition: color .25s ease, border-color .25s ease;
+}
+
+footer a[href]:hover {
+    color: var(--sepia-deep);
+    border-bottom-color: var(--sepia-deep);
+}
+
+/* Navbar — warm editorial style */
+.navbar {
+    background-color: transparent;
+    border-bottom: 1px solid var(--color-border-muted);
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+}
+
+.navbar-brand {
+    font-family: var(--font-book);
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    font-variant-numeric: lining-nums;
+    font-feature-settings: "lnum" 1, "kern" 1;
+}
+
+.navbar-brand:hover {
+    color: var(--sepia-deep);
+}
+
+.nav-link {
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    transition: color .25s ease, background-color .25s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--sepia-deep);
+    background-color: var(--hover-tint);
+}
+
+.navbar-toggler {
+    border-color: var(--toggler-border);
+    padding: 0.25rem 0.6rem;
+}
+
+.navbar-toggler-icon {
+    background-image: var(--toggler-icon);
+}
+
+/* Flat tag list on homepage — like a book's index entries */
+.tag-list {
+    margin-top: 2.8rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3rem 0.5rem;
+}
+
+.tag-list::before {
+    content: "Index";
+    font-family: var(--font-book);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-right: 0.5rem;
+}
+
+.tag-pill {
+    font-family: var(--font-book);
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.9rem;
+    color: var(--sepia);
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    text-decoration: none !important;
+    transition: color .25s ease, border-color .25s ease;
+}
+
+.tag-pill:hover {
+    color: var(--sepia-deep);
+    background-color: transparent;
+    border-bottom: 1px solid var(--sepia);
+}
+
+/* Pagination — warm editorial style */
+.pagination {
+    gap: 0.5rem;
+    margin: 1.8rem 0 0;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.2rem;
+}
+
+.page-link {
+    color: var(--sepia) !important;
+    background-color: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-family: var(--font-book);
+    transition: color .25s ease, background-color .25s ease, border-color .25s ease;
+}
+
+.page-link:hover {
+    color: var(--sepia-deep) !important;
+    background-color: var(--hover-tint);
+    border-color: var(--color-border-default);
+}
+
+/* Post older/newer navigation — strip Bootstrap borders, keep it quiet */
+article > footer .pagination {
+    border-top: none;
+    padding-top: 0;
+    gap: 0.6rem;
+}
+
+article > footer .page-link {
+    border: none;
+    border-radius: 0;
+    padding: 0.3rem 0;
+    font-size: 0.92rem;
+}
+
+article > footer .page-link:hover {
+    background-color: transparent;
+    text-decoration: none;
+    border-bottom: 1px solid var(--sepia);
+}
+
+/* Theme toggle — 文案显示将切换到的主题名 */
+.theme-toggle {
+    margin-left: auto;
+    padding: 0.25rem 0.6rem;
+    font-family: var(--font-book);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--ink-muted);
+    background-color: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    transition: color .25s ease, border-color .25s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+    color: var(--sepia-deep);
+    border-color: var(--sepia);
+}
+
+/* 桌面端排到折叠导航之后，靠 flex-grow 的 collapse 推到右端 */
+@media (min-width: 768px) {
+    .theme-toggle {
+        order: 5;
+        margin-left: 1rem;
+    }
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>庭燎之光</title>
+    <meta name="description" content="庭燎之光">
+    <meta name="author"      content="Alex-1Q84">
+    <meta name="keywords"    content="learn, function progamming, network, all, dns, ffi, debug, racket">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="http://alex-1q84.github.io/index.html">
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Theme -->
+    <script>
+    (function(){
+      try{
+        if(localStorage.getItem('theme')==='yongle'){
+          document.documentElement.setAttribute('data-theme','yongle');
+        }
+      }catch(e){}
+    })();
+    </script>
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- Analytics: 百度统计，ID 从 tongji.baidu.com 添加站点后获取；保持 CHANGE_ME 则不注入任何脚本 -->
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?25818854150736965769799870eb277e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    <!-- Analytics: Umami Cloud，website ID 从 cloud.umami.is 获取 -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="742d86da-3022-419f-8b64-5bd54d4824ed"></script>
+  </head>
+  <body>
+
+    <!-- Nav bar -->
+    <nav class="navbar navbar-expand-md navbar-light">
+      <div class="container">
+
+      <a href="/index.html" class="navbar-brand">庭燎之光</a>
+
+      <button id="theme-toggle" class="theme-toggle" type="button"
+              aria-label="切换到永乐主题">永乐</button>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbar_collapse" aria-controls="navbar_collapse"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar_collapse">
+          <ul class="navbar-nav mr-auto">
+
+
+            <li>
+              <a class="nav-link" href="/About.html">About</a>
+            </li> 
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.atom.xml">Atom</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/feeds/all.rss.xml">RSS</a>
+            </li>
+          </ul>
+      </div>
+
+      </div>
+    </nav>
+
+
+    <div class="container">
+        <div id="content" class="col-md-12">
+
+
+
+
+
+
+          <div class="post-item" data-year="2026">
+  <a class="post-title" href='/2026/06/%E4%B8%80%E7%A7%8D%E5%9C%A8%E5%9F%9F%E5%90%8D%E4%B8%AD%E5%B5%8C%E5%85%A5-ip-%E7%9A%84%E9%80%9A%E9%85%8D%E7%AC%A6-dns-%E8%A7%A3%E6%9E%90%E6%9C%8D%E5%8A%A1.html'>一种在域名中嵌入 IP 的通配符 DNS 解析服务</a>
+</div>
+<div class="post-item" data-year="2022">
+  <a class="post-title" href='/2022/06/config-racket-rsvg-lib-to-use-librsvg-via-ffi-in-racket.html'>config racket/rsvg lib to use librsvg via FFI in Racket</a>
+</div>
+<div class="post-item" data-year="2020">
+  <a class="post-title" href='/2020/07/%E5%AD%A6%E4%B9%A0-racket-%E8%AF%AD%E8%A8%80.html'>学习 Racket 语言</a>
+</div>
+
+          <div class="tag-list">
+            <a class="tag-pill" href="/tags/debug.html">debug</a><a class="tag-pill" href="/tags/dns.html">dns</a><a class="tag-pill" href="/tags/ffi.html">ffi</a><a class="tag-pill" href="/tags/function-progamming.html">function progamming</a><a class="tag-pill" href="/tags/learn.html">learn</a><a class="tag-pill" href="/tags/network.html">network</a><a class="tag-pill" href="/tags/racket.html">racket</a>
+          </div>
+        </div>
+      <footer>
+        <hr />
+        <p>Site generated
+        by <a href="https://github.com/greghendershott/frog">Frog</a>,
+        the <strong>fr</strong>ozen bl<strong>og</strong> tool.</p>
+        <p>Using <a href="https://getbootstrap.com/">Bootstrap</a>.</p>
+
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="/js/jquery-3.7.1.slim.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script>
+    (function(){
+      var items=document.querySelectorAll('#content .post-item');
+      if(!items.length)return;
+      var lastYear=null;
+      items.forEach(function(el){
+        var y=el.getAttribute('data-year');
+        if(y!==lastYear){
+          var h=document.createElement('h2');
+          h.className='year-header';
+          h.textContent=y;
+          el.parentNode.insertBefore(h,el);
+          lastYear=y;
+        }
+      });
+    })();
+    </script>
+    <script>
+    (function(){
+      var btn=document.getElementById('theme-toggle');
+      if(!btn)return;
+      var root=document.documentElement;
+      function sync(){
+        var yongle=root.getAttribute('data-theme')==='yongle';
+        btn.textContent=yongle?'庭燎':'永乐';
+        btn.setAttribute('aria-label',yongle?'切换到庭燎主题':'切换到永乐主题');
+      }
+      sync();
+      btn.addEventListener('click',function(){
+        var yongle=root.getAttribute('data-theme')==='yongle';
+        if(yongle){root.removeAttribute('data-theme');}
+        else{root.setAttribute('data-theme','yongle');}
+        try{localStorage.setItem('theme',yongle?'default':'yongle');}catch(e){}
+        sync();
+      });
+    })();
+    </script>
+  </body>
+</html>
